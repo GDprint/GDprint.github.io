@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDprinting</title>
-    <link rel="stylesheet" href="chat.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GDprinting</title>
+	<link rel="stylesheet" href="chat.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="envelope-wrapper">
-            <div class="envelope">
-                <div class="letter">
-                    <div class="text">
-                        <strong>Հ. Չալիկյան</strong>
-                        <p>
-                          Մամ մտի viber հավելված ընտրի My notes-ը նամակագրության բաժնից և կարող ենք իրար հետ կապ պահել  
-                        </p>
-                    </div>
-                </div>
-                 <span style="z-index: 10000; position: absolute; font-weight: 800; text-align: center; bottom: 10px;  ">Սեխմիր սրտիկի վրա որպեզի կարդաս նամակը </span>
-            </div>
-           
-           
-              
-            <div class="heart"></div>
-            
-        </div>
-    </div>
-    <script>
-        const envelope = document.querySelector('.envelope-wrapper');
-        envelope.addEventListener('click', () => {
-            envelope.classList.toggle('flap');
-        });
-    </script>
+	<div class="container">
+		<div class="envelope-wrapper">
+			<div class="envelope">
+				<div class="letter">
+					<div class="text">
+						<strong>Հ. Չալիկյան</strong>
+						<p>
+							Մամ մտի viber հավելված ընտրի My notes-ը նամակագրության բաժնից և կարող ենք իրար հետ կապ պահել
+						</p>
+					</div>
+				</div>
+				<span style="z-index: 10000; position: absolute; font-weight: 800; text-align: center; bottom: 10px;">Սեխմիր սրտիկի վրա որպեզի կարդաս նամակը
+
+				</span>
+			</div>
+			<div class="heart"></div>
+
+		</div>
+						<a style="position: absolute; bottom: 20%; left: 50%; transform: translate(-50%, -50%)" href="viber://chat?number=%2B37496965874" target="_blank">
+    <button style=" background-color: #7360F2; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;">
+        Բացել Viber-ը
+    </button>
+</a>
+	</div>
+	<script>
+		const envelope = document.querySelector('.envelope-wrapper');
+		envelope.addEventListener('click', () => {
+			envelope.classList.toggle('flap');
+		});
+
+	</script>
 </body>
+
 </html>
