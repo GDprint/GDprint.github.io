@@ -42,6 +42,20 @@ const orderData = {
         "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/151857.jpg?raw=true"
             ]
 	}
+	,	"149058": {
+		title: "Պատվեր #149058 - Ինքնապչուն թաղանթի տպագրություն",
+		printingMaterial: "Ինքնապչուն թաղանթ",
+		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		customerData: {
+			name: "Վահագ",
+//			email: "goharav88@mail.ru",
+			phone: "+37493868081"
+		},
+		description: "Ինքնապչուն թաղանթի տպագրություն:",
+		images: [
+        "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/bandicam%202025-04-12%2019-49-12-564.jpg?raw=true"
+            ]
+	}
 };
 
 function searchOrder() {
