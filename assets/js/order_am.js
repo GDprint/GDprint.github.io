@@ -53,7 +53,7 @@ const orderData = {
 		},
 		description: "Ինքնապչուն թաղանթի տպագրություն:",
 		images: [
-        "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/bandicam%202025-04-12%2019-49-12-564.jpg?raw=true"
+        "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/149058.jpg?raw=true"
             ]
 	}
 };
