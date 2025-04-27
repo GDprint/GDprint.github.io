@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="hy">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>GDprinting</title>
+	<meta name="description" content="GDprinting ընկերությունը կատարում է ցանկացած տեսակի տպագրական
+	աշխատանքներ։ Դիզայն, ֆայլերի պատրաստում, չափագրում, ինքնակպչուն
+	թաղանթների փակցման և բաներների տեղադրման, ամրացման աշխատանքներ։
+	Երաշխավորում ենք անթերի և բարձրորակ տպագրություն։ #prin #Պլոտեռային_հատում #Kinderbox #Օֆսետ #A4բլանկ #պիտակներ">
+	<meta name="keywords" content="GDprinting">
+	<meta name="author" content="GDprinting" />
+	<!-- Favicons -->
+	<link href="assets/img/logo-icon.png" rel="icon">
+	<link href="assets/img/logo-icon.png" rel="apple-touch-icon">
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com" rel="preconnect">
+	<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Main CSS File -->
+	<link href="assets/css/main.css" rel="stylesheet">
+	
+	<script>
+  window.onload = function () {
+    const savedLang = localStorage.getItem("selected_lang");
+
+    if (savedLang === "HY") {
+      window.location.href = "home.html";
+    } else if (savedLang === "EN") {
+      window.location.href = "EN/home.html";
+    } else if (savedLang === "RU") {
+      window.location.href = "RU/home.html";
+    }
+  };
+</script>
+
+
+
+
+</head>
+
+<body>
+<div class="cmyk-background"></div>
+	<!-- Լեզվի ընտրություն (ոչ մոդալ) -->
+	<section id="languageSelect" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: 
+ none;">
+		<img src="assets/img/logo.png" alt="Տպարանի Լոգո" style="max-width: 250px; margin-bottom: 30px;">
+		<h3 style="font-weight: bolder;" style="margin-bottom: 20px;">Ընտրեք Ձեր լեզուն</h3 >
+		<h3 style="font-weight: bolder;" style="margin-bottom: 20px;">Выберите ваш язык.</h3>
+		<h3 style="font-weight: bolder;" style="margin-bottom: 20px;">Select your language.</h3>
+		<br>
+		<div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+			<!-- Լեզվի կոճակները՝ չաշխատեն առանց համաձայնության -->
+			<button class="lang-btn" onclick="setLanguage('HY')">Հայերեն</button>
+			<button class="lang-btn" onclick="setLanguage('RU')">Русский</button>
+			<button class="lang-btn" onclick="setLanguage('EN')">English</button>
+			
+
+		</div>
+		<div>
+			<input type="checkbox" id="agreeTerms">
+			<label style="color: #fff; font-weight: 600;" for="agreeTerms">
+				Ես համաձայն եմ <span class="rules-link" onclick="agreeToTerms()">կայքի կանոններին</span>
+			</label>
+		</div>
+	</section>
+
+	<!-- Կանոնակարգի մոդալ -->
+	<div id="rulesModal" class="rules-modal">
+		<div class="rules-modal-content">
+			<span class="rules-close" onclick="closeRulesModal()">&times;</span>
+			<div class="modal-header">
+				<h2>GDprinting Կանոնակարգ</h2>
+			</div>
+			<div class="modal-body">
+				<div class="rules-text">
+					<h2>1. Ընդհանուր դրույթներ</h2>
+					<p><strong>1.1.</strong> Այս կանոնակարգը սահմանում է ծառայությունների օգտագործման պայմանները։</p>
+					<p><strong>1.2.</strong> Օգտվելով Տպարանի ծառայություններից՝ օգտվողը հաստատում է, որ ընդունում է այս կանոնակարգի պայմանները։</p>
+					<p><strong>2.</strong><strong> Ծառայությունների նկարագրություն</strong></p>
+					<p><strong>2.1.</strong> Տպարանը մատուցում է լայնաֆորմատ տպագրություն, պլոտերային հատում, ինքնակպչուն թաղանթների վաճառք և այլ ծառայություններ, որոնք ներկայացված են կայքում։</p>
+					<p><strong>2.2.</strong>Տպարանը երաշխավորում է բարձրորակ տպագրություն՝ օգտագործելով եվրոպական նյութեր։</p>
+					<p><strong>3.</strong> <strong>Պատվերների ձևավորում և կատարում</strong></p>
+					<p><strong>3.1.</strong> Պատվերները կատարվում են առցանց՝ առանց տպարան այցելելու։</p>
+					<p><strong>3.2.</strong> Պատվերի գրանցման համար օգտվողը լրացնում է համապատասխան ձևը կայքում։</p>
+					<p><strong>3.3.</strong> Պատվերի կատարման ժամկետները կախված են աշխատանքի ծավալից և բարդությունից։</p>
+					<p><strong>4.</strong><strong>Վճարում և առաքում</strong></p>
+					<p><strong>4.1.</strong>Պատվերի հաստատումից հետո անհրաժեշտ է անմիջապես կատարել վճարումը։ Առանց վճարման հաստատման, պատվերի իրականացումը չի սկսվի։</p>
+					<p><strong>4.2.</strong> Վճարման մանրամասները նշվում են պատվերի հաստատման փուլում, և օգտվողը ստանում է հաստատող հաղորդագրություն իր կողմից տրամադրված էլ. հասցեին։</p>
+					<p><strong>4.3.</strong> Առաքումը սկսվում է 1 կմ-ի համար 250 դրամից։ 50,000 դրամ և ավելի պատվերի դեպքում առաքումը <strong>անվճար է</strong>։</p>
+
+					<p><strong>5.</strong> <strong>Պատասխանատվություն</strong></p>
+					<p><strong>5.1.</strong> Մենք պատասխանատվություն չենք կրում կայքի կամ ծառայությունների սխալ օգտագործման հետևանքով առաջացած վնասների համար:</p>
+					<p><strong>6.</strong> <strong> Պայմանների փոփոխություն</strong></p>
+					<p><strong>6.1.</strong> Տպարանը իրավունք ունի փոփոխել այս կանոնակարգը՝ առանց նախապես զգուշացնելու։ Ձեր շարունակական օգտագործումը կնշանակի համաձայնություն նոր պայմաններին:</p>
+					<p><strong>6.2.</strong> Փոփոխությունները ուժի մեջ են մտնում կայքում հրապարակման պահից։</p>
+					<p><strong>7. Մտավոր Սեփականություն</strong></p>
+					<p><strong>7.1.</strong> Այս կայքի բովանդակությունը պատկանում է մեզ և պաշտպանված է հեղինակային իրավունքով, այս կանոնը խախտելը առաջացնում է տուգանք 100.000դր - 250.000դր:</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- CSS -->
+	<style>
+		body {
+			background-image: url('https://knowledgemerger.com/wp-content/uploads/2019/03/What-are-the-advantages-of-printers.jpg');
+			background-size: cover;
+			/* Նկարը պետք է փռվի ամբողջ էկրանով */
+			background-position: center center;
+			/* Պահպանել կենտրոնը */
+			background-attachment: fixed;
+			/* Բարձրացնել էկրանի ներսում, որպեսզի նա տեղաշարժվի պարբերաբար */
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+
+		.lang-btn {
+			padding: 12px 25px;
+			border: none;
+			background: #000;
+			color: #fff;
+			border-radius: 8px;
+			font-size: 16px;
+			transition: 0.3s;
+			width: 200px;
+			font-weight: 600;
+		}
+
+		.lang-btn:hover {
+			background-color: red;
+			color: #fff;
+			font-weight: 700;
+			transform: scale(1.05);
+		}
+
+		.rules-link {
+			color: red;;
+			cursor: pointer;
+			font-weight: bolder;
+			text-decoration: none;
+		}
+
+		.rules-modal {
+			display: none;
+			position: fixed;
+			z-index: 999;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			animation: fadeIn 0.4s ease-in-out;
+		}
+
+		/* Ֆոնային շերտ՝ CMYK */
+.cmyk-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+    background: linear-gradient(to bottom,
+        rgba(0, 255, 255, 0.7) 0%,     /* Cyan */
+        rgba(255, 0, 255, 0.7) 25%,    /* Magenta */
+        rgba(255, 255, 0, 0.7) 50%,    /* Yellow */
+        rgba(0, 0, 0, 0.7) 75%,         /* Black */
+        rgba(0, 0, 0, 1) 100%         /* Black */
+    );
+}
+
+/* Լեզվի ընտրության բլոկ՝ բլուռով ապակի */
+#languageSelect {
+    position: relative;
+    max-width: 600px;
+    margin: 0px auto;
+    
+    
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    z-index: 1;
+}
+
+/* Լեզվի կոճակներ */
+#languageSelect button {
+    display: block;
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#languageSelect button:hover {
+    background-color: red;
+	color: #fff;
+}
+
+
+
+		.modal-body {
+			overflow-y: auto;
+			height: 700px;
+		}
+
+		.rules-modal-content {
+			background: #fff;
+			margin: 0 auto;
+			padding: 30px;
+			width: 90%;
+
+			max-width: 600px;
+			border-radius: 12px;
+			position: relative;
+			animation: slideIn 0.5s ease-out;
+		}
+
+		.rules-text strong {
+			font-weight: bolder;
+			color: #000;
+		}
+
+		.rules-close {
+			position: absolute;
+			right: 20px;
+			top: 15px;
+			font-size: 24px;
+			color: #888;
+			cursor: pointer;
+		}
+
+		.rules-text {
+
+			margin-top: 20px;
+			font-size: 16px;
+			line-height: 1.6;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0
+			}
+
+			to {
+				opacity: 1
+			}
+		}
+
+		@keyframes slideIn {
+			from {
+				transform: translateY(-30px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+	</style>
+
+	<!-- JavaScript -->
+	<script>
+		// Լեզվի ընտրություն
+		function setLanguage(lang) {
+			alert("Մեր ծառայություններից օգտվելու համար խնդրում ենք հաստատել կայքի կանոններին համաձայնությունը։");
+			localStorage.setItem("selected_lang", lang);
+
+		}
+
+		function setLanguage(lang) {
+			const agreed = document.getElementById("agreeTerms").checked;
+			if (!agreed) {
+				alert("Խնդրում ենք նախ համաձայնել կայքի կանոնակարգին։");
+				return;
+			}
+
+			// Պահպանում ենք լեզուն՝ հետագայում օգտագործելու համար
+			localStorage.setItem("selected_lang", lang);
+
+			// Ուղղորդում ենք համապատասխան լեզվով էջ
+			if (lang === "HY") {
+				window.location.href = "home.html";
+			} else if (lang === "EN") {
+				window.location.href = "EN/home.html";
+			} else if (lang === "RU") {
+				window.location.href = "RU/home.html";
+			}
+		}
+
+
+		// Մոդալ բացում
+		function openRulesModal() {
+			document.getElementById("rulesModal").style.display = "block";
+		}
+
+		function closeRulesModal() {
+			document.getElementById("rulesModal").style.display = "none";
+			localStorage.setItem("rules_last_seen", new Date().getTime());
+			localStorage.setItem("agreed", "true");
+			document.getElementById("agreeTerms").checked = true;
+		}
+
+		// Ցուցադրել մոդալը ըստ կանոնների
+		function maybeShowRules() {
+			const lastSeen = localStorage.getItem("rules_last_seen");
+			const now = new Date().getTime();
+			const oneWeek = 1000 * 60 * 60 * 24 * 7;
+
+			if (!lastSeen || now - parseInt(lastSeen) > oneWeek) {
+				openRulesModal();
+			} else {
+				alert("Դուք արդեն տեսել եք կանոնակարգը վերջին 7 օրվա ընթացքում։");
+			}
+		}
+
+		// Երբ էջը բեռնվում է՝ բացի մոդալը ավտոմատ (եթե 7 օր անցել է)
+		window.addEventListener("load", function() {
+			const lastSeen = localStorage.getItem("rules_last_seen");
+			const now = new Date().getTime();
+			const oneWeek = 1000 * 60 * 60 * 24 * 7;
+
+			// Մոդալը բացի ավտոմատ
+			if (!lastSeen || now - parseInt(lastSeen) > oneWeek) {
+				openRulesModal();
+			}
+
+			// Եթե համաձայնվել է՝ նշված checkbox-ը checked
+			if (localStorage.getItem("agreed") === "true") {
+				document.getElementById("agreeTerms").checked = true;
+			}
+		});
+
+	</script>
+<script>
+  function setLanguage(lang) {
+    const agreed = document.getElementById("agreeTerms").checked;
+    if (!agreed) {
+      alert("Խնդրում ենք նախ համաձայնել կայքի կանոնակարգին։");
+      return;
+    }
+
+    // Պահպանում ենք լեզուն՝ հետագայում օգտագործելու համար
+    localStorage.setItem("selected_lang", lang);
+    localStorage.setItem("agreed", "true");
+
+    // Ստուգում ենք, թե արդյոք կա պահպանված նպատակակետ
+    const intendedPage = localStorage.getItem("intendedPage");
+    if (intendedPage) {
+      localStorage.removeItem("intendedPage");
+      window.location.href = intendedPage;
+    } else {
+      // Ուղղորդում ենք համապատասխան լեզվով էջ
+      if (lang === "HY") {
+        window.location.href = "home.html";
+      } else if (lang === "EN") {
+        window.location.href = "EN/home.html";
+      } else if (lang === "RU") {
+        window.location.href = "RU/home.html";
+      }
+    }
+  }
+</script>
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
