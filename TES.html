@@ -1,122 +1,122 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Անահիտ Օգնական</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Անահիտ Ձայնային Օգնական</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f4f4f4;
+      background: #f8f9fa;
+      padding: 20px;
     }
-    #assistant {
-      background: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    #status {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
     }
     button {
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 0.5rem;
-      background-color: #6a0dad;
+      padding: 10px 20px;
+      background-color: #007bff;
       color: white;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #580e9f;
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <div id="assistant">
-    <h2>🎙️ Անահիտ Ձայնային Օգնական</h2>
-    <button onclick="startRecognition()">Խոսել Անահիտի հետ</button>
-  </div>
+
+  <h2>Բարի գալուստ GD Print</h2>
+  <p id="status">Խոսքը միացված չէ...</p>
+  <button id="start">Սկսել զրույցը Անահիտի հետ</button>
 
   <script>
     const synth = window.speechSynthesis;
-    let recognition;
+    const status = document.getElementById('status');
+    const startBtn = document.getElementById('start');
 
-    if ('webkitSpeechRecognition' in window) {
-      recognition = new webkitSpeechRecognition();
-    } else if ('SpeechRecognition' in window) {
-      recognition = new SpeechRecognition();
+    let recognition;
+    let voices = [];
+
+    function speak(text) {
+      if (!synth) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voice = voices.find(v => v.lang === 'hy-AM') || voices.find(v => v.lang.startsWith('en'));
+      if (voice) utterance.voice = voice;
+      synth.speak(utterance);
     }
 
-    if (recognition) {
+    function initializeRecognition() {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert('Ձեր բրաուզերը չի աջակցում ձայնային ճանաչման ֆունկցիային։');
+        return;
+      }
+
+      recognition = new webkitSpeechRecognition();
       recognition.lang = 'hy-AM';
       recognition.continuous = true;
       recognition.interimResults = false;
 
-      recognition.onresult = function(event) {
-        const text = event.results[event.results.length - 1][0].transcript.toLowerCase();
-        console.log('Ձայնային մուտք:', text);
-        handleCommand(text);
+      recognition.onstart = () => status.textContent = 'Անահիտը լսում է...';
+      recognition.onerror = event => console.error('Խոտան:', event.error);
+      recognition.onend = () => {
+        status.textContent = 'Խոսքը դադարեց։ Վերսկսելու համար սեղմեք նորից։';
       };
 
-      recognition.onend = () => recognition.start();
-    }
+      recognition.onresult = function (event) {
+        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+        console.log('Ասվել է:', transcript);
+        processCommand(transcript);
+      };
 
-    function speak(text) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'hy-AM';
-      utterance.voice = synth.getVoices().find(voice => voice.name.includes('Google հայերեն') || voice.name.includes('female') || voice.name.includes('Հայերեն')) || null;
-      synth.speak(utterance);
-    }
-
-    function startRecognition() {
-      speak("Ողջունում եմ Ձեզ, ես Անահիտն եմ՝ Ձեր անձնական օգնականը։ Հարցրեք այն, ինչ ցանկանում եք։");
       recognition.start();
+      speak('Ողջունում եմ Ձեզ, ես Անահիտն եմ՝ Ձեր անձնական օգնականը։ Ինչպե՞ս կարող եմ օգնել։');
     }
 
-    function handleCommand(text) {
-      if (text.includes('լայնաֆորմատ')) {
-        speak("Տանում եմ Ձեզ Լայնաֆորմատ տպագրության էջ:");
-        window.location.href = '#wide-format';
-      } else if (text.includes('պլոտեր')) {
-        speak("Տանում եմ Ձեզ Պլոտերային հատման էջ:");
-        window.location.href = '#plotter';
-      } else if (text.includes('այցեքարտ')) {
-        speak("Տանում եմ Ձեզ Այցեքարտերի տպագրության էջ:");
-        window.location.href = '#business-card';
-      } else if (text.includes('լուսանկար')) {
-        speak("Տանում եմ Ձեզ Լուսանկարների տպագրության էջ:");
-        window.location.href = '#photo';
-      } else if (text.includes('ձևաթուղթ')) {
-        speak("Տանում եմ Ձեզ Ձևաթղթերի տպագրության էջ:");
-        window.location.href = '#forms';
-      } else if (text.includes('օրացույց')) {
-        speak("Տանում եմ Ձեզ Օրացույցի տպագրության էջ:");
-        window.location.href = '#calendar';
-      } else if (text.includes('բաժակ')) {
-        speak("Տանում եմ Ձեզ Բաժակի վրա տպագրության էջ:");
-        window.location.href = '#cup';
-      } else if (text.includes('ռոլափ') || text.includes('rull up')) {
-        speak("Տանում եմ Ձեզ Rull UP Stand տպագրության էջ:");
-        window.location.href = '#rollup';
-      } else if (text.includes('կտավ')) {
-        speak("Տանում եմ Ձեզ Կտավի վրա տպագրության էջ:");
-        window.location.href = '#canvas';
-      } else if (text.includes('հարցեր') || text.includes('հՏհ')) {
-        speak("ՀՏՀ․ Այո, մենք առաջարկում ենք առաքում, վճարում կարող եք կատարել տեղում կամ առցանց, իսկ պատվերները պատրաստվում են 24-48 ժամում:");
-      } else if (text.includes('աշխատանքային ժամ')) {
-        speak("Մեր աշխատանքային ժամերն են՝ Երկուշաբթիից Ուրբաթ՝ 10։00-ից 18։00։ Շաբաթ՝ 11։00-ից 15։00։ Կիրակի՝ հանգստի օր։");
-      } else if (text.includes('կոնտակտ')) {
-        speak("Դուք կարող եք կապ հաստատել մեզ հետ՝ զանգահարելով 077123456 կամ գրելով info@print.am էլ․ հասցեին։");
-      } else if (text.includes('տպարանի մասին')) {
-        speak("Մենք 10 տարվա փորձ ունեցող տպարան ենք, առաջարկում ենք որակյալ և արագ ծառայություն ողջ Հայաստանում։ Մեր առավելություններն են՝ մատչելի գներ, արագ առաքում և անհատական մոտեցում։");
-      } else if (text.includes('խորհուրդ')) {
-        speak("Խնդրում եմ նշեք որ ծառայության համար եք ցանկանում խորհուրդ։ Օրինակ՝ լամինացիա՞ է պետք, գույնը ո՞րն է լավագույնը, և այլն։");
+    function processCommand(command) {
+      const services = {
+        'լայնաֆորմատ': 'wide-format.html',
+        'պլոտեր': 'plotter.html',
+        'այցեքարտ': 'business-cards.html',
+        'լուսանկար': 'photo-print.html',
+        'ձևաթուղթ': 'forms.html',
+        'օրացույց': 'calendar.html',
+        'բաժակ': 'mug-print.html',
+        'rull up': 'rullup.html',
+        'կտավ': 'canvas.html'
+      };
+
+      for (const keyword in services) {
+        if (command.includes(keyword)) {
+          speak(`Դուք ընտրեցիք ${keyword}-ի տպագրությունը։ Բացում եմ համապատասխան էջը։`);
+          window.location.href = services[keyword];
+          return;
+        }
+      }
+
+      if (command.includes('աշխատանքային ժամեր')) {
+        speak('Տպարանը բաց է երկուշաբթիից շաբաթ ժամը 10։00-ից 19։00։');
+      } else if (command.includes('կոնտակտ')) {
+        speak('Մեր հեռախոսահամարն է 041 00 00 00, էլեկտրոնային հասցեն՝ info@gdprint.am։');
+      } else if (command.includes('պատմիր քեզ մասին') || command.includes('տպարանի մասին')) {
+        speak('GD Print տպարանը առաջարկում է լայն տեսականիով բարձրորակ տպագրական ծառայություններ՝ ժամանակին կատարումով և մատչելի գներով։');
+      } else if (command.includes('գաղտնիություն')) {
+        speak('Մենք հարգում ենք ձեր գաղտնիությունը և չենք տարածում ձեր տվյալները առանց ձեր համաձայնության։');
+      } else if (command.includes('հաճախ տրվող հարց')) {
+        speak('Օրինակ՝ ինչպե՞ս պատվիրել․ այցելեք մեր կայքը, ընտրեք ծառայությունը և լրացրեք ձևը։');
       } else {
-        speak("Ներողություն, չհասկացա։ Կարող եք կրկնել խնդիրը կամ ձևակերպել այլ կերպ։");
+        speak('Խնդրում եմ կրկնեք կամ ձևակերպեք հարցը այլ կերպ։');
       }
     }
+
+    window.speechSynthesis.onvoiceschanged = () => {
+      voices = synth.getVoices();
+    };
+
+    startBtn.addEventListener('click', initializeRecognition);
   </script>
 </body>
 </html>
