@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Անահիտ Օգնական</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    #assistant {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #6a0dad;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #580e9f;
+    }
+  </style>
+</head>
+<body>
+  <div id="assistant">
+    <h2>🎙️ Անահիտ Ձայնային Օգնական</h2>
+    <button onclick="startRecognition()">Խոսել Անահիտի հետ</button>
+  </div>
+
+  <script>
+    const synth = window.speechSynthesis;
+    let recognition;
+
+    if ('webkitSpeechRecognition' in window) {
+      recognition = new webkitSpeechRecognition();
+    } else if ('SpeechRecognition' in window) {
+      recognition = new SpeechRecognition();
+    }
+
+    if (recognition) {
+      recognition.lang = 'hy-AM';
+      recognition.continuous = true;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        const text = event.results[event.results.length - 1][0].transcript.toLowerCase();
+        console.log('Ձայնային մուտք:', text);
+        handleCommand(text);
+      };
+
+      recognition.onend = () => recognition.start();
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'hy-AM';
+      utterance.voice = synth.getVoices().find(voice => voice.name.includes('Google հայերեն') || voice.name.includes('female') || voice.name.includes('Հայերեն')) || null;
+      synth.speak(utterance);
+    }
+
+    function startRecognition() {
+      speak("Ողջունում եմ Ձեզ, ես Անահիտն եմ՝ Ձեր անձնական օգնականը։ Հարցրեք այն, ինչ ցանկանում եք։");
+      recognition.start();
+    }
+
+    function handleCommand(text) {
+      if (text.includes('լայնաֆորմատ')) {
+        speak("Տանում եմ Ձեզ Լայնաֆորմատ տպագրության էջ:");
+        window.location.href = '#wide-format';
+      } else if (text.includes('պլոտեր')) {
+        speak("Տանում եմ Ձեզ Պլոտերային հատման էջ:");
+        window.location.href = '#plotter';
+      } else if (text.includes('այցեքարտ')) {
+        speak("Տանում եմ Ձեզ Այցեքարտերի տպագրության էջ:");
+        window.location.href = '#business-card';
+      } else if (text.includes('լուսանկար')) {
+        speak("Տանում եմ Ձեզ Լուսանկարների տպագրության էջ:");
+        window.location.href = '#photo';
+      } else if (text.includes('ձևաթուղթ')) {
+        speak("Տանում եմ Ձեզ Ձևաթղթերի տպագրության էջ:");
+        window.location.href = '#forms';
+      } else if (text.includes('օրացույց')) {
+        speak("Տանում եմ Ձեզ Օրացույցի տպագրության էջ:");
+        window.location.href = '#calendar';
+      } else if (text.includes('բաժակ')) {
+        speak("Տանում եմ Ձեզ Բաժակի վրա տպագրության էջ:");
+        window.location.href = '#cup';
+      } else if (text.includes('ռոլափ') || text.includes('rull up')) {
+        speak("Տանում եմ Ձեզ Rull UP Stand տպագրության էջ:");
+        window.location.href = '#rollup';
+      } else if (text.includes('կտավ')) {
+        speak("Տանում եմ Ձեզ Կտավի վրա տպագրության էջ:");
+        window.location.href = '#canvas';
+      } else if (text.includes('հարցեր') || text.includes('հՏհ')) {
+        speak("ՀՏՀ․ Այո, մենք առաջարկում ենք առաքում, վճարում կարող եք կատարել տեղում կամ առցանց, իսկ պատվերները պատրաստվում են 24-48 ժամում:");
+      } else if (text.includes('աշխատանքային ժամ')) {
+        speak("Մեր աշխատանքային ժամերն են՝ Երկուշաբթիից Ուրբաթ՝ 10։00-ից 18։00։ Շաբաթ՝ 11։00-ից 15։00։ Կիրակի՝ հանգստի օր։");
+      } else if (text.includes('կոնտակտ')) {
+        speak("Դուք կարող եք կապ հաստատել մեզ հետ՝ զանգահարելով 077123456 կամ գրելով info@print.am էլ․ հասցեին։");
+      } else if (text.includes('տպարանի մասին')) {
+        speak("Մենք 10 տարվա փորձ ունեցող տպարան ենք, առաջարկում ենք որակյալ և արագ ծառայություն ողջ Հայաստանում։ Մեր առավելություններն են՝ մատչելի գներ, արագ առաքում և անհատական մոտեցում։");
+      } else if (text.includes('խորհուրդ')) {
+        speak("Խնդրում եմ նշեք որ ծառայության համար եք ցանկանում խորհուրդ։ Օրինակ՝ լամինացիա՞ է պետք, գույնը ո՞րն է լավագույնը, և այլն։");
+      } else {
+        speak("Ներողություն, չհասկացա։ Կարող եք կրկնել խնդիրը կամ ձևակերպել այլ կերպ։");
+      }
+    }
+  </script>
+</body>
+</html>
