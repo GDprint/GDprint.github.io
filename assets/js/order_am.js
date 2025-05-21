@@ -54,7 +54,20 @@ const orderData = {
 		images: [
         "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/bandicam%202025-04-12%2019-49-12-564.jpg?raw=true"
             ]
-	}
+	},
+	"LPT-573886": {
+		title: "Պատվեր #LPT-573886 - Լայնաֆորմատ տպագրություն",
+		printingMaterial: "Banner-ի վրա տպագրություն",
+		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		customerData: {
+			name: "Արտակ",
+//			email: "goharav88@mail.ru",
+			phone: "+37494910403"
+		},
+		description: "Banner-ի վրա տպագրություն:",
+		images: [
+        "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LPT-573886.jpg?raw=true"
+            ]
 };
 
 function searchOrder() {
