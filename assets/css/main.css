@@ -2903,16 +2903,7 @@ form button {
 }
 
 /*ID*/
-#wideFormat,
-#plotterCross,
-#businessCard,
-#photoPrint,
-#printable,
-#calendar,
-#cupOrderForm,
-#RollupOrder,
-#CanvasOrder,
-#posterOrderForm {
+#wideFormat, #plotterCross, #businessCard, #photoPrint, #printable, #calendar, #cupOrderForm, #RollupOrder, #CanvasOrder, #posterOrderForm {
 	width: auto;
 	border: none;
 	text-decoration: none;
