@@ -1,29 +1,46 @@
-/**
-* Template Name: Eterna
-* Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
-/* Fonts */
 :root {
 	--default-font: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	--heading-font: "Raleway", sans-serif;
 	--nav-font: "Poppins", sans-serif;
 }
-     /* Տառատեսակների մի մասը տեղականից, մյուս մասը՝ Google Fonts */
-        @font-face { font-family: 'Sylfaen'; src: local('Sylfaen'); }
-        @font-face { font-family: 'Arial Armenian'; src: local('Arial Armenian'); }
-		@font-face { font-family: 'ArTarumianMHarvats'; src: local('ArTarumianMHarvats'); }
-        @font-face { font-family: 'Noto Sans Armenian'; src: local('Noto Sans Armenian'); }
-        @font-face { font-family: 'Noto Serif Armenian'; src: local('Noto Serif Armenian'); }
-        @font-face { font-family: 'FreeSerif'; src: local('FreeSerif'); }
-        @font-face { font-family: 'DejaVu Sans'; src: local('DejaVu Sans'); }
+
+/* Տառատեսակների մի մասը տեղականից, մյուս մասը՝ Google Fonts */
+@font-face {
+	font-family: 'Sylfaen';
+	src: local('Sylfaen');
+}
+
+@font-face {
+	font-family: 'Arial Armenian';
+	src: local('Arial Armenian');
+}
+
+@font-face {
+	font-family: 'ArTarumianMHarvats';
+	src: local('ArTarumianMHarvats');
+}
+
+@font-face {
+	font-family: 'Noto Sans Armenian';
+	src: local('Noto Sans Armenian');
+}
+
+@font-face {
+	font-family: 'Noto Serif Armenian';
+	src: local('Noto Serif Armenian');
+}
+
+@font-face {
+	font-family: 'FreeSerif';
+	src: local('FreeSerif');
+}
+
+@font-face {
+	font-family: 'DejaVu Sans';
+	src: local('DejaVu Sans');
+}
+
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
 	--background-color: #ffffff;
@@ -80,6 +97,7 @@
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
+
 body {
 	color: var(--default-color);
 	background-color: var(--background-color);
@@ -1195,6 +1213,7 @@ section,
 .services .service-item:hover .icon {
 	background: var(--surface-color);
 }
+
 .services .service-item:hover .icon i {
 	color: var(--accent-color);
 }
@@ -2739,143 +2758,172 @@ button {
 	box-shadow: 0 0 10px rgba(172, 172, 172, 2);
 }
 
-.hight{
+.hight {
 	width: 100%;
 	height: 10px;
 	background-color: aqua;
 }
 
 /*Job modal style*/
-	#job-widget {
-			background-color: black;
-			border-left: 6px solid red;
-			padding: 15px 20px;
-			position: fixed;
-			bottom: 20px;
-			left: 20px;
-			max-width: 320px;
-			z-index: 1000;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-			border-radius: 10px;
-			animation: fadeInUp 0.6s ease;
-			color: #ffffff;
-		}
+#job-widget {
+	background-color: black;
+	border-left: 6px solid red;
+	padding: 15px 20px;
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	max-width: 320px;
+	z-index: 1000;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border-radius: 10px;
+	animation: fadeInUp 0.6s ease;
+	color: #ffffff;
+}
 
-		#job-widget button {
-			margin-top: 10px;
-			background-color: red;
-			color: #fff;
-			border: none;
-			padding: 8px 14px;
-			border-radius: 6px;
-			cursor: pointer;
-			font-weight: bold;
-		}
+#job-widget button {
+	margin-top: 10px;
+	background-color: red;
+	color: #fff;
+	border: none;
+	padding: 8px 14px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: bold;
+}
 
-		.mini-close {
-			position: absolute;
-			top: 5px;
-			right: 10px;
-			color: #FF0800;
-			cursor: pointer;
-			font-size: 20px;
-		}
+.mini-close {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	color: #FF0800;
+	cursor: pointer;
+	font-size: 20px;
+}
 
-		.modal {
-			display: none;
-			position: fixed;
-			z-index: 2000;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			overflow-y: auto;
-			background-color: rgba(0, 0, 0, 0.5);
-		}
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+}
 
-		.job-content {
-			background-color: #fff;
-			margin: 50px auto;
-			padding: 30px;
-			border-radius: 10px;
-			width: 90%;
-			max-width: 600px;
-			color: #333;
-			position: relative;
-		}
+.job-content {
+	background-color: #fff;
+	margin: 50px auto;
+	padding: 30px;
+	border-radius: 10px;
+	width: 90%;
+	max-width: 600px;
+	color: #333;
+	position: relative;
+}
 
-		.job-content h2 {
-			color: black;
-		}
+.job-content h2 {
+	color: black;
+}
 
-		.jobclose {
-			color: #FF0800;
-			position: absolute;
-			right: 20px;
-			top: 10px;
-			font-size: 28px;
-			cursor: pointer;
-		}
+.jobclose {
+	color: #FF0800;
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	font-size: 28px;
+	cursor: pointer;
+}
 
-		.jobclose:hover {
-			color: #940500;
-		}
+.jobclose:hover {
+	color: #940500;
+}
 
-		form {
-			display: flex;
-			flex-direction: column;
-		}
+form {
+	display: flex;
+	flex-direction: column;
+}
 
-		label {
-			margin: 10px 0 5px;
-		}
+label {
+	margin: 10px 0 5px;
+}
 
-		input {
-			padding: 8px;
-			border-radius: 5px;
-			border: 1px solid #ccc;
-		}
+input {
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
 
-		form button {
-			margin-top: 15px;
-			background-color: green;
-			color: #fff;
-			border: none;
-			padding: 10px;
-			border-radius: 6px;
-			cursor: pointer;
-			font-weight: bold;
-		}
+form button {
+	margin-top: 15px;
+	background-color: green;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: bold;
+}
 
-		@keyframes fadeInUp {
-			from {
-				opacity: 0;
-				transform: translateY(30px);
-			}
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
 
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 /*faq style*/
 
- .faq-section {
-      margin-bottom: 40px;
-    }
-    .faq-item {
-      background: white;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .question {
-      font-weight: bold;
-      color: #000000;
-    }
-    .answer {
-      margin-top: 5px;
-      color: #FF0800;
-    }
+.faq-section {
+	margin-bottom: 40px;
+}
+
+.faq-item {
+	background: white;
+	margin-bottom: 15px;
+	padding: 15px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+	font-weight: bold;
+	color: #000000;
+}
+
+.answer {
+	margin-top: 5px;
+	color: #FF0800;
+}
+
+/*ID*/
+#wideFormat,
+#plotterCross,
+#businessCard,
+#photoPrint,
+#printable,
+#calendar,
+#cupOrderForm,
+#RollupOrder,
+#CanvasOrder,
+#posterOrderForm {
+	width: auto;
+	border: none;
+	text-decoration: none;
+	background: none;
+	outline: none;
+	box-shadow: none;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	font-weight: bolder;
+	color: #888;
+	user-select: none;
+	pointer-events: none;
+}
