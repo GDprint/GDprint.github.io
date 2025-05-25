@@ -208,12 +208,8 @@ function openModal() {
 		function submitApplication(event) {
 			event.preventDefault();
 			document.getElementById('successMsg').style.display = 'block';
-			// այստեղ կարող եք ավելացնել տվյալների ուղարկման լոգիկա (օրինակ՝ backend կամ email service)
 		}
-		    // Առաջադրենք որ տվյալները ճիշտ են՝ ուղարկման իմիտացիա
-    
 
-		// Փակել մոդալը եթե սեղմում են դրսի մասում
 		window.onclick = function(event) {
 			if (event.target == document.getElementById('jobModal')) closeModal();
 			if (event.target == document.getElementById('formModal')) closeFormModal();
@@ -228,3 +224,4 @@ function openModal() {
         answer.style.display = isVisible ? 'none' : 'block';
       });
     });
+
