@@ -41,27 +41,28 @@
 		}
 
 	</style>
-<script>
-  // Ստուգում ենք, թե արդյոք օգտատերը համաձայնվել է կանոններին
-  const agreed = localStorage.getItem("agreed");
+	<script>
+		// Ստուգում ենք, թե արդյոք օգտատերը համաձայնվել է կանոններին
+		const agreed = localStorage.getItem("agreed");
 
-  // Եթե համաձայնություն չկա և օգտատերը չի գտնվում index.html էջում
-  if (!agreed && !window.location.pathname.endsWith("index.html")) {
-    // Պահպանում ենք օգտատիրոջ նախնական նպատակակետը
-    const intendedPage = window.location.href;
-    localStorage.setItem("intendedPage", intendedPage);
+		// Եթե համաձայնություն չկա և օգտատերը չի գտնվում index.html էջում
+		if (!agreed && !window.location.pathname.endsWith("index.html")) {
+			// Պահպանում ենք օգտատիրոջ նախնական նպատակակետը
+			const intendedPage = window.location.href;
+			localStorage.setItem("intendedPage", intendedPage);
 
-    // Վերուղղում ենք index.html էջ
-    window.location.href = "index.html";
-  }
-</script>
+			// Վերուղղում ենք index.html էջ
+			window.location.href = "index.html";
+		}
+
+	</script>
 
 </head>
 
 
 <body class="services-page">
 
- <header id="header" class="header sticky-top">
+	<header id="header" class="header sticky-top">
 
 		<div class="topbar d-flex align-items-center dark-background">
 			<div class="container d-flex justify-content-center justify-content-md-between">
@@ -75,7 +76,7 @@
 					<a href="https://x.com/GDprinting_am" class="twitter"><i class="bi bi-twitter-x"></i></a>
 					<a href="https://www.facebook.com/golden.design01" class="facebook"><i class="bi bi-facebook"></i></a>
 					<a href="https://www.instagram.com/golden.design01" class="instagram"><i class="bi bi-instagram"></i></a>
-				
+
 				</div>
 			</div>
 		</div>
@@ -96,13 +97,13 @@
 						<li><a href="portfolio.html">Պորտֆոլիո</a></li>
 						<li><a href="team.html">Թիմ</a></li>
 						<li><a href="contact.html">Կապ</a></li>
-						<li class="dropdown"><a  id="other" href="#"><span>Այլ</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+						<li class="dropdown"><a id="other" href="#"><span>Այլ</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
 							<ul>
 								<li><a id="pric" href="pricing.html">Գնագոյացում</a></li>
 
 								<li><a id="testim" href="testimonials.html">Կարծիքներ</a></li>
 								<li><a id="testim" href="faq.html">ՀՏՀ</a></li>
-<!--
+								<!--
 								<li class="dropdown"><a id="exam" onclick="notificate()" href="#"><span>Քննական թեստեր</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
 									<ul>
 										<li><a onclick="notificate()" href="#">corelDRAW</a></li>
@@ -115,7 +116,7 @@
 -->
 							</ul>
 						</li>
-							<div class="language-dropdown">
+						<div class="language-dropdown">
 							<button class="language-button"><img src="https://flagcdn.com/w40/am.png" alt="Հայերեն"></button>
 							<div class="language-menu">
 								<a href="services.html"><img src="https://flagcdn.com/w40/am.png" alt="Հայերեն"> Հայերեն</a>
@@ -132,7 +133,7 @@
 		</div>
 
 	</header>
-	
+
 	<main class="main">
 
 		<!-- Page Title -->
@@ -153,46 +154,42 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="wideFormatPrintLabel">Լայնաֆորմատ տպագրություն</h5>
-
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<!--https://formsubmit.co/el/litota               -->
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Ամբողջական անունը</label>
-								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
+								<input name="ID" class="form-control" type="text" id="wideFormat" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռ.</label>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
 								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ հասցե</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
 							</div>
-							<div class="mb-3">
-								<label for="length" class="form-label">Բարձրություն</label>
-								<input name="Բարձրություն" type="number" min="0" step="0.01" class="form-control" id="height" required>
-							</div>
-							<div class="mb-3">
-								<label for="width" class="form-label">Լայնություն</label>
-								<input name="Լայնություն" type="number" min="0" step="0.01" class="form-control" id="width" required>
-							</div>
-							<div class="mb-3">
-								<label for="select" class="form-label">Ընտրեք տպագրական նյութը</label>
-								<select name="Նյութ" class="form-select" required>
-									<option name="Նյութ" value="Banner">Banner</option>
-									<option name="Նյութ" value="Banner+ողակ">Banner+ողակ</option>
-									<option name="Նյութ" value="Samokley">Samokley</option>
-									<option name="Նյութ" value="Setka Samokley">Setka Samokley</option>
-								</select>
-							</div>
-							<div class="mb-3">
-								<label for="fontSelect" class="form-label">Ընտրեք Տառատեսակ</label>
-								<select name="Ընտրեք Տառատեսակ" id="fontSelect" class="fontSelect form-select">
-									<option name="Տառատեսակ" value="" selected disabled>Ընտրեք տառատեսակ</option>
-								</select>
+
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="length" class="form-label">Բարձրություն</label>
+								<input name="Բարձրություն" type="number" min="0.5"  step="0.01" class="form-control" id="height" required>
+									</div>
+									<div class="col-md-6">
+										<label for="width" class="form-label">Լայնություն</label>
+								<input name="Լայնություն" type="number" min="0.5"  step="0.01" class="form-control" id="width" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="servicePackage" class="form-label">Ծառայության փաթեթը</label>
@@ -202,8 +199,27 @@
 									<option name="Էկոնոմ" value="7800">Premium</option>
 									<option name="Պրեմիում" value="10560">Gold</option>
 								</select>
-
 							</div>
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="select" class="form-label">Ընտրեք նյութը</label>
+								<select name="Նյութ" class="form-select" required>
+									<option name="Նյութ" value="Banner">Banner</option>
+									<option name="Նյութ" value="Banner+ողակ">Banner+ողակ</option>
+									<option name="Նյութ" value="Samokley">Samokley</option>
+									<option name="Նյութ" value="Setka Samokley">Setka Samokley</option>
+								</select>
+									</div>
+									<div class="col-md-6">
+										<label for="fontSelect" class="form-label">Ընտրեք Տառատեսակ</label>
+								<select name="Ընտրեք Տառատեսակ" id="fontSelect" class="fontSelect form-select">
+									<option name="Տառատեսակ" value="" selected disabled>Ընտրեք տառատեսակ</option>
+								</select>
+									</div>
+								</div>
+							</div>
+							
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Պատվերի նկարագրություն</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
@@ -230,7 +246,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Plotter Crossing Form Modal -->
 		<div class="modal fade" id="plotterCrossingModal" tabindex="-1" aria-labelledby="plotterCrossingLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -242,25 +258,42 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Ամբողջական անունը</label>
-								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
+								<input name="ID" class="form-control" type="text" id="plotterCross" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռ.</label>
-								<input name="Հեռ." type="tel" class="form-control" id="telNumber" required>
-							</div>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
+							</div>						
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ հասցե</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
 							</div>
-							<div class="mb-3">
-								<label for="length" class="form-label">Բարձրություն</label>
-								<input name="Բարձրություն" type="number" class="form-control" id="length" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="length" class="form-label">Բարձրություն</label>
+										<input name="Բարձրություն" type="number" class="form-control" id="length" required>
+									</div>
+									<div class="col-md-6">
+										<label for="width" class="form-label">Լայնություն</label>
+										<input name="Լայնություն" type="number" class="form-control" id="width" required>
+									</div>
+								</div>
 							</div>
+							<!--
 							<div class="mb-3">
 								<label for="width" class="form-label">Լայնություն</label>
 								<input name="Լայնություն" type="number" class="form-control" id="width" required>
 							</div>
+-->
 							<div class="mb-3">
 								<label for="fontSelect" class="form-label">Ընտրեք Տառատեսակ</label>
 								<select name="Ընտրեք Տառատեսակ" id="fontSelect" class="fontSelect form-select">
@@ -275,6 +308,7 @@
 								<label for="orderDescription" class="form-label">Պատվերի նկարագրություն</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
 							</div>
+
 							<button style="background-color: black; border: none;" type="submit" class="btn btn-primary">Պատվիրել</button>
 							<input type="hidden" name="_template" value="table">
 							<input type="hidden" name="_captcha" value="false">
@@ -286,7 +320,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Business Card Printing Form Modal -->
 		<div class="modal fade" id="businessCardPrintingModal" tabindex="-1" aria-labelledby="businessCardPrintingLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -298,35 +332,45 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="order-form">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Ամբողջական անունը</label>
-								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
+								<input name="ID" class="form-control" type="text" id="businessCard" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռ.</label>
-								<input name="Հեռ." type="tel" class="form-control" id="telNumber" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ հասցե</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
 							</div>
-							<div class="mb-3">
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
 								<label for="quantity" class="form-label">Տպաքանակը</label>
 								<input name="Տպաքանակը" id="quantity" min="1000" value="1000" type="number" class="form-control" required>
-							</div>
-							<div class="mb-3">
-								<label for="paperType" class="form-label">Թղտի տեսակը</label>
+									</div>
+									<div class="col-md-6">
+										<label for="paperType" class="form-label">Թղտի թղտի տեսակը</label>
 								<select name="Թղտի տեսակը" class="form-select" id="paperType" required>
-									<option selected disabled>Ընտրեք թղտի տեսակը</option>
+<!--									<option selected disabled>Ընտրեք  տեսակը</option>-->
 									<option name="glossy" value="glossy">Glossy</option>
 									<option name="matte" value="matte">Matte</option>
 								</select>
+									</div>
+								</div>
 							</div>
-	
+						
+
 							<div class="mb-3">
 								<label class="form-label" for="selected-design">Ընտրված դիզայն</label>
 								<input class="form-control" type="text" id="selected-design" name="Ընտրված դիզայն" value="" readonly>
-
-
 
 								<div id="design-modal" class="modal">
 									<div class="modal-content design">
@@ -349,10 +393,7 @@
 											</select>
 
 											<span class="close">&times;</span>
-
 										</div>
-
-
 										<div id="cards" class="design-grid">
 											<!-- Example designs -->
 
@@ -2030,15 +2071,15 @@
 											<!--education card end-->
 											<!-- Add more designs as needed -->
 										</div>
-
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Պատվերի նկարագրություն</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
 							</div>
+
 							<div style="display: flex;
 							align-items: center; justify-content: space-between;" class="mb-3">
 								<button style="background-color: black; border: none; outline-color: none; list-style: none;" type="submit" class="btn btn-primary">Պատվիրել</button>
@@ -2068,28 +2109,40 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+								<input name="ID" class="form-control" type="text" id="photoPrint" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռախոսահամար" type="tel" class="form-control" id="telNumber" required>
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
 							</div>
-							<div class="mb-3">
-								<label for="size" class="form-label">Թղթի չափս</label>
+							
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="size" class="form-label">Թղթի չափս</label>
 								<select name="Թղթի չափս" class="form-select" id="size" onchange="photoCount()" required>
 									<option name="A4 չափս 400" value="400">A4</option>
 									<option name="A5 չափս 200" value="200">A5</option>
 									<option name="A5 չափս 100" value="100">A6</option>
 								</select>
-							</div>
-							<div class="mb-3">
-								<label for="quantity" class="form-label">Տպման քանակը</label>
+									</div>
+									<div class="col-md-6">
+									<label for="quantity" class="form-label">Տպման քանակը</label>
 								<input name="Տպագրության քանակը" id="qanak" min="1" placeholder="Մուտքագրեք քանակը" oninput="photoCount()" required type="number" class="form-control" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="fileLink" class="form-label">Պատկեր/Ֆայլի հղում</label>
@@ -2124,27 +2177,39 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+								<input name="ID" class="form-control" type="text" id="printable" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռ." type="tel" class="form-control" id="telNumber" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
 								<input name="Էլ. հասցե" type="email" class="form-control" id="email" required>
 							</div>
-							<div class="mb-3">
-								<label for="printType" class="form-label">Տպագրության տեսակը</label>
+							
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="printType" class="form-label">Տպագրության տեսակը</label>
 								<select name="Տպագրության տեսակը" class="form-select" id="printType" onchange="blankForms()" required>
 									<option name="Տպագրության տեսակը 30դր" value="30">A4 Սև ու Սպիտակ</option>
 									<option name="Տպագրության տեսակը 50դր" value="50">A4 Գունավոր</option>
 								</select>
-							</div>
-							<div class="mb-3">
-								<label for="blank" class="form-label">Տպման քանակը</label>
+									</div>
+									<div class="col-md-6">
+											<label for="blank" class="form-label">Տպման քանակը</label>
 								<input name="Տպագրության քանակը" type="number" id="blank" min="1" placeholder="Մուտքագրեք քանակը" class="form-control" oninput="blankForms()" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="fileLink" class="form-label">Պատկեր/Ֆայլի հղում</label>
@@ -2154,6 +2219,7 @@
 								<label for="orderDescription" class="form-label">Պատվերի նկարագրություն</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
 							</div>
+						
 							<div style="display: flex;
 							align-items: center; justify-content: space-between;" class="mb-3">
 								<button style="background-color: black; border: none;" type="submit" class="btn btn-primary">Պատվիրել</button>
@@ -2182,12 +2248,19 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="calendarOrderForm">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Մուտքագրեք ձեր անուն ազգանունը" required>
+								<input name="ID" class="form-control" type="text" id="calendar" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռախոսահամար" type="tel" class="form-control" id="telNumber" placeholder="Մուտքագրեք ձեր հեռախոսահամարը" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
@@ -2199,7 +2272,10 @@
 									<option name="Տառատեսակ" value="" selected disabled>Ընտրեք տառատեսակ</option>
 								</select>
 							</div>
-							<div class="mb-3">
+							
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
 								<label for="calendarType" class="form-label">Օրացույցի տիպ</label>
 								<select name="Օրացույցի տեսակը" class="form-select" id="calendarType" required>
 									<option name="Ընտրեք օրացույցի տիպը" selected disabled>Ընտրեք օրացույցի տիպը</option>
@@ -2207,11 +2283,13 @@
 									<option name="Օրացույցի տեսակը" value="Պատի օրացույց">Պատի օրացույց</option>
 									<option name="Օրացույցի տեսակը" value="Գրպանի օրացույց">Գրպանի օրացույց</option>
 								</select>
-							</div>
-							<div class="mb-3">
+									</div>
+									<div class="col-md-6">
 								<label for="printQuantity" class="form-label">Պատճենների քանակ</label>
 								<input name="Պատճենների քանակ" type="number" class="form-control" id="printQuantity" placeholder="Մուտքագրեք պատճենների քանակը" required>
-							</div>
+									</div>
+								</div>
+							</div>							
 							<div class="mb-3">
 								<label for="paperType" class="form-label">Թղթի տեսակը</label>
 								<select class="form-select" id="paperType" required>
@@ -2243,7 +2321,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Modal Roll-up Order Registration Form -->
 		<div class="modal fade" id="RollupOrderModal" tabindex="-1" aria-labelledby="RollupOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2255,19 +2333,28 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="RollupOrderForm">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Մուտքագրեք ձեր անուն ազգանունը" required>
+								<input name="ID" class="form-control" type="text" id="RollupOrder" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռախոսահամար" type="tel" class="form-control" id="telNumber" placeholder="Մուտքագրեք ձեր հեռախոսահամարը" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
 								<input name="Էլ․ հասցե" type="email" class="form-control" id="email" placeholder="Մուտքագրեք ձեր էլ․ հասցեն" required>
 							</div>
-							<div class="mb-3">
-								<label class="form-label" for="rullsize">Ընտրեք չափսը:</label>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label class="form-label" for="rullsize">Ընտրեք չափսը:</label>
 								<select name="Ընտրեք չափը" class="form-select" id="rullsize">
 									<option value="0" selected disabled>Ընտրեք չափը</option>
 									<option name="Rull_UP_60x160" value="10150">60x160</option>
@@ -2277,10 +2364,12 @@
 									<option name="Rull_UP_120x200" value="25350">120x200</option>
 									<option name="Rull_UP_150x200" value="31700">150x200</option>
 								</select>
-							</div>
-							<div class="mb-3">
-								<label class="form-label" for="rullquantity">Քանակ</label>
+									</div>
+									<div class="col-md-6">
+									<label class="form-label" for="rullquantity">Քանակ</label>
 								<input name="Քանակ" class="form-control" type="number" id="rullquantity" min="1" value="1">
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label class="form-label" for="fileLink">Google Drive հղում:</label>
@@ -2320,18 +2409,27 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="CanvasOrderForm">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Մուտքագրեք ձեր անուն ազգանունը" required>
+								<input name="ID" class="form-control" type="text" id="CanvasOrder" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռախոսահամար" type="tel" class="form-control" id="telNumber" placeholder="Մուտքագրեք ձեր հեռախոսահամարը" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
 								<input name="Էլ․ հասցե" type="email" class="form-control" id="email" placeholder="Մուտքագրեք ձեր էլ․ հասցեն" required>
 							</div>
-							<div class="mb-3">
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
 								<label class="form-label" for="canvasize">Ընտրել չափսը</label>
 								<select name="Ընտրված չափսը" class="form-select" id="canvasize">
 									<option value="">-- Ընտրել չափսը --</option>
@@ -2353,10 +2451,12 @@
 									<option value="100x100">100 x 100 սմ</option>
 									<option value="120x180">120 x 180 սմ</option>
 								</select>
-							</div>
-							<div class="mb-3">
-								<label class="form-label" for="quantity">Քանակ</label>
+									</div>
+									<div class="col-md-6">
+									<label class="form-label" for="quantity">Քանակ</label>
 								<input name="Քանակ" class="form-control" type="number" id="canvaquantity" value="1" min="1">
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label class="form-label" for="fileLink">Google Drive հղում:</label>
@@ -2385,7 +2485,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Modal Գովազդի տեղադրում Registration Form -->
 		<div class="modal fade" id="posterForm" tabindex="-1" aria-labelledby="calendarOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2397,24 +2497,36 @@
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="calendarOrderForm">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Մուտքագրեք ձեր անուն ազգանունը" required>
+								<input name="ID" class="form-control" type="text" id="posterOrderForm" readonly>
 							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռ." type="tel" class="form-control" id="telNumber" placeholder="Մուտքագրեք ձեր հեռախոսահամարը" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
 								<input name="Էլ․ հասցե" type="email" class="form-control" id="email" placeholder="Մուտքագրեք ձեր էլ․ հասցեն" required>
 							</div>
-							<label for="fullName" class="form-label">Կազմակերպության անվանումը</label>
-							<input name="Կազմակերպության անվանումը" type="text" class="form-control" id="fullName" placeholder="Մուտքագրեք ձեր Կազմակերպության անվանումը" required>
-							<div class="mb-3">
-								<label for="squareMeters">Մուտքագրեք քառակուսի մետր:</label>
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Ընկերության անվանումը</label>
+							<input name="Կազմակերպության անվանումը" type="text" class="form-control" id="fullName" placeholder="Ընկերության անվանումը" required>
+									</div>
+									<div class="col-md-6">
+									<label for="squareMeters">Քառակուսի մետր</label>
 								<input name="Քառակուսի մետր" type="number" id="squareMeters" class="form-control" min="0.1" step="0.1" placeholder="Քառակուսի մետր" oninput="PostForms()">
+									</div>
+								</div>
 							</div>
-
 							<div class="mb-3">
 								<label for="printQuantity" class="form-label">Կազմակերպության հասցե</label>
 								<input name="Կազմակերպության հասցե" type="text" class="form-control" id="printQuantity" placeholder="Մուտքագրեք կազմակերպության հասցեն" required>
@@ -2451,32 +2563,38 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Անուն Ազգանուն</label>
-								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Մուտքագրեք ձեր անուն ազգանունը" required>
+								<input name="ID" class="form-control" type="text" id="cupOrderForm" readonly>
 							</div>
-
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Հեռախոսահամար</label>
-								<input name="Հեռախոսահամար" type="tel" class="form-control" id="telNumber" placeholder="Մուտքագրեք ձեր հեռախոսահամարը" required>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="fullName" class="form-label">Անուն</label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" required>
+									</div>
+									<div class="col-md-6">
+										<label for="telNumber" class="form-label">Հեռախոսահամար</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+									</div>
+								</div>
 							</div>
 
 							<div class="mb-3">
 								<label for="email" class="form-label">Էլ․ հասցե</label>
 								<input name="Էլ․ հասցե" type="email" class="form-control" id="email" placeholder="Մուտքագրեք ձեր էլ․ հասցեն" required>
 							</div>
-
-							<div class="mb-3">
-								<label for="Sarph">Բաժակների քանակ:</label>
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="Sarph">Բաժակների քանակ:</label>
 								<input name="Բաժակների քանակ" type="number" id="Sarph" class="form-control" placeholder="Մուտքագրեք բաժակների քանակը" oninput="SarphForms()" required>
-							</div>
-
-							<div class="mb-3">
-								<label for="design">Տպագրության դիզայնի Ֆայլի Հղում:</label>
+									</div>
+									<div class="col-md-6">
+								<label for="design">Ֆայլի Հղում:</label>
 								<input name="Ֆայլի Հղում" type="url" class="form-control" id="fullName" placeholder="Մուտքագրեք Ֆայլի Հղում" required>
+									</div>
+								</div>
 							</div>
-
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Պատվերի նկարագրություն</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" placeholder="Մուտքագրեք պատվերի մանրամասները" required></textarea>
@@ -2498,6 +2616,9 @@
 					</div>
 				</div>
 			</div>
+			<script>
+
+			</script>
 		</div>
 		<!--Modal end-->
 		<!-- Services Section -->
@@ -2590,7 +2711,7 @@
 
 						</div>
 					</div><!-- End Service Item -->
-						<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="900">
+					<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="900">
 						<div class="service-item  position-relative">
 							<div class="icon">
 								<i class="bi bi-printer-fill"></i>
@@ -2688,9 +2809,9 @@
 				<div class="col-lg-3 col-md-6 footer-links">
 					<h4 id="uslink">Օգտակար հղումներ</h4>
 					<ul>
-						<li><i class="bi bi-chevron-right"></i> <a id="fhome"  href="home.html">Տուն</a></li>
-						<li><i class="bi bi-chevron-right"></i> <a id="fabout"  href="about.html">Մեր մասին</a></li>
-						<li><i class="bi bi-chevron-right"></i> <a id="fservic"  href="services.html">Ծառայություն</a></li>
+						<li><i class="bi bi-chevron-right"></i> <a id="fhome" href="home.html">Տուն</a></li>
+						<li><i class="bi bi-chevron-right"></i> <a id="fabout" href="about.html">Մեր մասին</a></li>
+						<li><i class="bi bi-chevron-right"></i> <a id="fservic" href="services.html">Ծառայություն</a></li>
 						<li><i class="bi bi-chevron-right"></i> <a id="TS" style="line-height: 20px;" href="index.html">Ծառայության պայմանները</a></li>
 					</ul>
 				</div>
@@ -2765,14 +2886,14 @@
 		});
 
 	</script>
-	<!--
+	
 		<script>
 		window.addEventListener('contextmenu', function(e) {
 			e.preventDefault();
 		});
 
 	</script>
--->
+
 	<!--Job-->
 
 	<div id="job-widget">
@@ -2786,7 +2907,7 @@
 	<div id="jobModal" class="modal">
 		<div class="job-content">
 			<span class="jobclose" onclick="closeModal()">&times;</span>
-			<h4><strong>Աշխատանքի հայտարարություն</strong></h4>
+			<h5><strong>Աշխատանքի հայտարարություն</strong></h5>
 			<h6><strong>Պաշտոն․ Տարածքային ներկայացուցիչ</strong></h6>
 
 			<p><strong>Աշխատանքի նկարագրություն․</strong><br>
@@ -2893,26 +3014,29 @@
 				</select>
 				<button type="submit">Ուղարկել հայտը</button>
 				<input type="hidden" name="_template" value="table">
-							<input type="hidden" name="_captcha" value="false">
-							<input type="hidden" name="_autoresponse" value="Ձեր հայտը հաջողությամբ ուղարկվել է։ Շնորհակալություն։">
-							<input type="hidden" name="_subject" value="Աշխատանքի հայտարարություն">
-							<input type="hidden" name="_next" value="https://gdprint.github.io/services.html">
+				<input type="hidden" name="_captcha" value="false">
+				<input type="hidden" name="_autoresponse" value="Ձեր հայտը հաջողությամբ ուղարկվել է։ Շնորհակալություն։">
+				<input type="hidden" name="_subject" value="Աշխատանքի հայտարարություն">
+				<input type="hidden" name="_next" value="https://gdprint.github.io/services.html">
 			</form>
 		</div>
 	</div>
 	<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/67ff52fe243eca190c6c95db/1ioulod6d';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {},
+			Tawk_LoadStart = new Date();
+		(function() {
+			var s1 = document.createElement("script"),
+				s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/67ff52fe243eca190c6c95db/1ioulod6d';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+
+	</script>
+	<!--End of Tawk.to Script-->
 </body>
 
 </html>
