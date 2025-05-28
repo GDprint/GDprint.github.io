@@ -67,7 +67,19 @@ const orderData = {
 		images: [
         "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LPT-573886.jpg?raw=true"
             ]
+	},"LPT-710418": {
+		title: "Պատվեր #LPT-710418 - Լայնաֆորմատ տպագրություն",
+		printingMaterial: "Banner-ի վրա տպագրություն",
+		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		customerData: {
+			name: "Բագրատ",
+			email: "avakimyanb@gmail.com",
+			phone: "+37441312222"
+		},
+		description: "Banner-ի վրա տպագրություն:",
+		images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/Bako.jpg?raw=true"]
 	}
+	
 
 };
 // 
