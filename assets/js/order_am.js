@@ -78,8 +78,8 @@ const orderData = {
 		},
 		description: "Banner-ի վրա տպագրություն:",
 		images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/Bako.jpg?raw=true"]
-	}, "LPT-295245": {
-		title: "Պատվեր #LPT-295245 - Լայնաֆորմատ տպագրություն",
+	}, "LTP-295245": {
+		title: "Պատվեր #LTP-295245 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
 		orderStage: "Պատվերը պատրաստ է դիտարկման",
 		customerData: {
