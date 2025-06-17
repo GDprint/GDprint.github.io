@@ -89,6 +89,17 @@ const orderData = {
 		},
 		description: "Banner-ի վրա տպագրություն:",
 		images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LTP-295245.jpg?raw=true"]
+	}, "LTP-513973": {
+		title: "Պատվեր #LTP-513973 - Լայնաֆորմատ տպագրություն",
+		printingMaterial: "Banner-ի վրա տպագրություն",
+		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		customerData: {
+			name: "Harut",
+			 email: "harthakob.arseni@gmail.com",
+			phone: "+37491499001"
+		},
+		description: "Banner-ի վրա տպագրություն:",
+		images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/harut.jpg?raw=true"]
 	}
 	
 
