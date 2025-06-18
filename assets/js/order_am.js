@@ -17,7 +17,7 @@ const orderData = {
 		"149026": {
 		title: "Պատվեր #149026 - Գովազդային պաստառի տպագրություն",
 		printingMaterial: "Banner օղակներով",
-		orderStage: "Պատվերը պատրաստ է",
+		orderStage: "Հանձնված պատվեր",
 		customerData: {
 			name: "Գոհար",
 			email: "goharav88@mail.ru",
@@ -31,7 +31,7 @@ const orderData = {
 		"149027": {
 		title: "Պատվեր #149027 - Այցեքարտերի տպագրություն",
 		printingMaterial: "Այցեքարտերի տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Հանձնված պատվեր",
 		customerData: {
 			name: "Անահիտ Վարդանյան",
 //			email: "goharav88@mail.ru",
@@ -44,7 +44,7 @@ const orderData = {
 	},	"149058": {
 		title: "Պատվեր #149058 - Ինքնապչուն թաղանթի տպագրություն",
 		printingMaterial: "Ինքնապչուն թաղանթի տպագրություն 3 կտոր",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Հանձնված պատվեր",
 		customerData: {
 			name: "Վահագ",
 //			email: "goharav88@mail.ru",
@@ -57,7 +57,7 @@ const orderData = {
 	}, "LPT-573886": {
 		title: "Պատվեր #LPT-573886 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Հանձնված պատվեր",
 		customerData: {
 			name: "Արտակ",
 //			email: "goharav88@mail.ru",
@@ -70,7 +70,7 @@ const orderData = {
 	},"LPT-710418": {
 		title: "Պատվեր #LPT-710418 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Հանձնված պատվեր",
 		customerData: {
 			name: "Բագրատ",
 			email: "avakimyanb@gmail.com",
@@ -81,7 +81,7 @@ const orderData = {
 	}, "LTP-295245": {
 		title: "Պատվեր #LTP-295245 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Պատվերը կասեցված է",
 		customerData: {
 			name: "Աշխեն",
 			// email: "avakimyanb@gmail.com",
@@ -92,7 +92,7 @@ const orderData = {
 	}, "LTP-513973": {
 		title: "Պատվեր #LTP-513973 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Պատվերը գտնվում է տպագրության փուլում",
 		customerData: {
 			name: "Harut",
 			 email: "harthakob.arseni@gmail.com",
