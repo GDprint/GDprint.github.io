@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GDPrint PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ff6600" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #fff8f0;
+      color: #333;
+      margin: 0;
+    }
+    #installBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 24px;
+      background: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    #installBtn:hover {
+      background: #e65500;
+    }
+  </style>
+</head>
+<body>
+  <h1>GDPrint հավելվածի տեղադրում</h1>
+  <p>Եթե ձեր բրաուզերը թույլ է տալիս, ներքև կտեսնեք հավելվածի տեղադրման կոճակը։</p>
+
+  <button id="installBtn">Տեղադրել հավելվածը</button>
+
+  <script>
+    // Service Worker գրանցում
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+      .then(() => {
+        console.log('Service Worker գրանցվեց');
+      })
+      .catch((err) => {
+        console.error('Service Worker գրանցման սխալ', err);
+      });
+    }
+
+    (function() {
+      const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+      const isInStandaloneMode = ('standalone' in window.navigator) && (window.navigator.standalone);
+      const installBtn = document.getElementById('installBtn');
+      let deferredPrompt;
+
+      // iOS Safari հուշում
+      if (isIos && !isInStandaloneMode) {
+        alert("Բարև! Եթե ուզում եք տեղադրել GDPrint հավելվածը, սեղմեք Safari-ի ներքևի կոճակը և ընտրեք 'Add to Home Screen'.");
+      }
+
+      // beforeinstallprompt իրադարձությունը՝ Android, Windows Chrome/Edge
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'inline-block';
+      });
+
+      installBtn.addEventListener('click', async () => {
+        installBtn.style.display = 'none';
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          alert('Շնորհակալություն, հավելվածը տեղադրվում է!');
+        } else {
+          alert('Տեղադրման առաջարկը մերժվեց');
+        }
+        deferredPrompt = null;
+      });
+    })();
+  </script>
+  <script>const CACHE_NAME = 'gdprint-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then((cache) => cache.addAll(urlsToCache))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+    .then((response) => response || fetch(event.request))
+  );
+});
+</script>
+</body>
+</html>
