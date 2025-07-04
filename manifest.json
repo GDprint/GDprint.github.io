@@ -1,19 +1,13 @@
 {
-  "name": "GDPrint",
-  "short_name": "GDPrint",
-  "start_url": ".",
+  "name": "GDPrinting Services",
+  "short_name": "GDPrinting",
+  "start_url": "/services.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ff6600",
   "icons": [
     {
-      "src": "img/logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "img/logo.png",
-      "sizes": "512x512",
+      "src": "img/logo-icon.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]
