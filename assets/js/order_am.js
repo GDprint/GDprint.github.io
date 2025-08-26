@@ -103,13 +103,13 @@ const orderData = {
 	}, "LTP-345167": {
 		title: "Պատվեր #LTP-345167 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտակման",
+		orderStage: "Պատվերը պատրաստ է դիտարկման",
 		customerData: {
 			name: "Ստելա Սարգսյան",
 			 email: "stella.sargsyan.82@mail.ru",
 			phone: "091909994"
 		},
-		//description: "Գովազդային պաստառ՝ BEER-ՅԱՆ գարեջրատան համար։ Ձախում տեղադրված է հայկական զարդանախշով լոգո և ուղղահայաց BEER գրությունը։ Աջում՝ ժպտերես աղջիկ ավանդական հագուստով՝ գարեջրի բաժակներով, սեղանին խեցգետին և նախուտեստ։ Ստորին մասում՝ խորիմաստ հաղորդագրություն՝ «Գարեջուր որ հիշվում է՝ ինչպես անունը»:",
+		description: "",
 			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/ddd.jpg?raw=true"]
 	}
 	
@@ -182,4 +182,5 @@ function backToOrder() {
 	const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
 	orderModal.show();
 }
+
 
