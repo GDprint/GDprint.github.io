@@ -103,7 +103,7 @@ const orderData = {
 	}, "LTP-345167": {
 		title: "Պատվեր #LTP-345167 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերը պատրաստ է դիտարկման",
+		orderStage: "Պատվերը պատրաստ է",
 		customerData: {
 			name: "Ստելա Սարգսյան",
 			 email: "stella.sargsyan.82@mail.ru",
@@ -182,5 +182,6 @@ function backToOrder() {
 	const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
 	orderModal.show();
 }
+
 
 
