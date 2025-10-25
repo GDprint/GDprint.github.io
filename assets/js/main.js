@@ -225,3 +225,180 @@ function openModal() {
       });
     });
 
+(function () {
+  // --- Ստանում ենք IP և գտնվելու վայրը ---
+  let userInfo = { ip: "անհայտ", city: "անհայտ", country: "անհայտ" };
+
+  fetch("https://ipapi.co/json/")
+    .then((res) => res.json())
+    .then((data) => {
+      userInfo.ip = data.ip;
+      userInfo.city = data.city;
+      userInfo.country = data.country_name;
+    })
+    .catch(() => {
+      console.warn("Չհաջողվեց ստանալ IP հասցեն։");
+    });
+
+  // --- Արգելող ձայն ---
+  const audio = document.createElement("audio");
+  audio.src ="assets/audio/Alarm-Sound.mp3";
+  audio.loop = true;
+  audio.volume = 1;
+
+  // --- Մոդալ պաշտպանություն ---
+  const modal = document.createElement("div");
+  modal.id = "protectModal";
+  Object.assign(modal.style, {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+    background: "rgba(0,0,0,0.6)",
+    display: "none",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    zIndex: "99999",
+    fontFamily: "Arial, sans-serif",
+    paddingTop: "30px",
+    backdropFilter: "blur(2px)",
+    transition: "opacity 0.5s ease",
+  });
+
+  const card = document.createElement("div");
+  Object.assign(card.style, {
+    background: "#fff",
+    borderRadius: "12px",
+    padding: "5px 7.5px",
+    textAlign: "center",
+    maxWidth: "480px",
+    width: "90%",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+    animation: "slideDown 0.5s ease",
+  });
+
+  const icon = document.createElement("div");
+  Object.assign(icon.style, {
+    fontSize: "128px",
+    color: "#b33",
+    marginBottom: "5px",
+  });
+  icon.textContent = "⚠️";
+
+  const title = document.createElement("h2");
+  title.textContent = "Գործողությունը արգելված է";
+  Object.assign(title.style, {
+    margin: "0 0 10px 0",
+	fontWeight: "bolder",
+    color: "#b33",
+  });
+
+  const reason = document.createElement("p");
+  reason.id = "pmReason";
+  Object.assign(reason.style, {
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: "10px",
+  });
+
+  const msg = document.createElement("p");
+  msg.textContent =
+    "Կայքի բովանդակությունը պաշտպանված է։ Խախտումը գրանցվել է համակարգում։";
+
+  const info = document.createElement("div");
+  info.id = "userInfo";
+  info.style.marginTop = "10px";
+  info.style.fontSize = "14px";
+  info.style.color = "#444";
+
+  const btn = document.createElement("button");
+  btn.textContent = "Հասկացա";
+  Object.assign(btn.style, {
+    padding: "8px 18px",
+    border: "none",
+    borderRadius: "8px",
+    background: "#333",
+    color: "#fff",
+    cursor: "pointer",
+    marginTop: "15px",
+  });
+  btn.onclick = function () {
+    modal.style.display = "none";
+    audio.pause();
+    audio.currentTime = 1;
+  };
+
+  card.append(icon, title, reason, msg, info, btn);
+  modal.appendChild(card);
+  document.body.appendChild(modal);
+
+  function showProtectModal(text) {
+    document.getElementById("pmReason").textContent =
+      text || "Արգելված գործողություն";
+
+    const time = new Date().toLocaleString("hy-AM");
+    document.getElementById(
+      "userInfo"
+    ).innerHTML = `<b>IP:</b> ${userInfo.ip}<br><b>Քաղաք:</b> ${userInfo.city}, ${userInfo.country}<br><b>Ժամ:</b> ${time}`;
+
+    modal.style.display = "flex";
+    audio.play().catch(() => {});
+  }
+
+  // --- Արգելքներ ---
+  document.addEventListener("contextmenu", (e) => {
+    if (!e.target.closest("span[onclick]")) {
+      e.preventDefault();
+      showProtectModal("Աջ կոճակը արգելված է։");
+    }
+  });
+
+  ["selectstart", "dragstart", "cut", "paste"].forEach((evt) => {
+    document.addEventListener(evt, (e) => {
+      if (!e.target.closest("span[onclick]")) {
+        e.preventDefault();
+        showProtectModal("Այս գործողությունը արգելված է։");
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    const key = (e.key || "").toLowerCase();
+    const ctrl = e.ctrlKey || e.metaKey;
+
+    if (e.keyCode >= 112 && e.keyCode <= 123) {
+      e.preventDefault();
+      showProtectModal("F1–F12 կոճակները արգելված են։");
+      return false;
+    }
+
+    if (ctrl && ["a", "c", "v", "s", "p"].includes(key)) {
+      if (!e.target.closest("span[onclick]")) {
+        e.preventDefault();
+        showProtectModal(`Ctrl + ${key.toUpperCase()} արգելված է։`);
+        return false;
+      }
+    }
+  });
+
+  // --- Developer Tools հայտնաբերում ---
+  const devDetector = new Image();
+  Object.defineProperty(devDetector, "id", {
+    get: function () {
+      showProtectModal("Developer Tools բացվել է — մուտքը արգելված է։");
+    },
+  });
+  console.log("%c", devDetector);
+
+  // --- Animation ---
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
