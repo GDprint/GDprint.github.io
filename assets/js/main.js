@@ -313,8 +313,7 @@ function openModal() {
 })();
 
 // --- Screenshot-ի արգելանք ---
-<!-- START: Screenshot-mitigation (place before </body>) -->
-<script>
+
 (function(){
   // Config
   const SHOW_LOG = false; // true եթե ուզում ես console-ում տեսնել հայտնաբերվումները
@@ -552,6 +551,5 @@ function openModal() {
   createPopup();
 
 })();
-</script>
-<!-- END: Screenshot-mitigation -->
+
 
