@@ -13,7 +13,7 @@
 	}
 
 	document.addEventListener('scroll', toggleScrolled);
-3	window.addEventListener('load', toggleScrolled);
+	window.addEventListener('load', toggleScrolled);
 
 	/**
 	 * Mobile nav toggle
@@ -224,79 +224,70 @@ function openModal() {
         answer.style.display = isVisible ? 'none' : 'block';
       });
     });
-: "30px",
-    background: "rgba(0,0,0,0.6)",
-    backdropFilter: "blur(2px)"
-  });
 
-  // Card (centered horizontally, near top)
-  const card = document.createElement("div");
-  Object.assign(card.style, {
-    width: "92%",
-    maxWidth: "560px",
-    background: "#fff",
-    borderRadius: "10px",
-    padding: "16px 18px",
-    boxShadow: "0 10px 40px rgba(0,0,0,0.25)",
-    textAlign: "center",
-    transform: "translateY(0)",
-    animation: "slideDownModal 0.45s ease"
-  });
 
-  // Add icon, title, reason, info, button
-  const icon = document.createElement("div");
-  icon.textContent = "⛔";
-  Object.assign(icon.style, { fontSize: "44px", color: "#b33", marginBottom: "8px" });
 
-  const title = document.createElement("h3");
-  title.textContent = "Գործողությունը արգելված է";
-  Object.assign(title.style, { margin: "0 0 6px 0", color: "#b33", fontSize: "18px" });
 
-  const reason = document.createElement("div");
-  reason.id = "protectReason";
-  Object.assign(reason.style, { fontWeight: 600, marginBottom: "8px", color: "#333" });
-
-  const info = document.createElement("div");
-  info.id = "protectInfo";
-  Object.assign(info.style, { fontSize: "14px", color: "#444", lineHeight: "1.4", marginBottom: "10px" });
-  info.innerHTML = '<i>Տեղը ճշտվում է (GPS)...</i>';
-
-  const okBtn = document.createElement("button");
-  okBtn.textContent = "Հասկացա";
-  Object.assign(okBtn.style, {
-    padding: "8px 16px",
-    border: "none",
-    borderRadius: "6px",
-    background: "#111",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: 600
-  });
-
-  okBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-    try { audio.pause(); audio.currentTime = 0; } catch(e){}
-  });
-
-  card.append(icon, title, reason, info, okBtn);
-  modal.appendChild(card);
-  document.body.appendChild(modal);
-
-  // Add simple slideDown keyframes
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes slideDownModal {
-      from { transform: translateY(-18px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+(function () {
+  // --- Արգելող ֆունկցիա ---
+  function protectAction(e, text) {
+    if (!e.target.closest("span[onclick]")) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.warn("Արգելված գործողություն:", text);
+      return false;
     }
-  `;
-  document.head.appendChild(style);
+  }
 
-  // ========================
-  // show modal + try GPS and display results
-  // ========================
-  async function showProtectModalWithGPS(text) {
-    reason.textContent = text || "Արգելված գործողություն";
-    info.innerHTML = "<i>Տեղը ճշտվում է (GPS) — խնդրում ենք թույլատրել տեղորոշման հարցումը...</i>";
+  // --- Արգելել աջ կոճակը ---
+  document.addEventListener("contextmenu", (e) => protectAction(e, "Աջ կոճակը արգելված է։"));
 
-    
+  // --- Արգելել ձախ մկնիկի քաշումը և ընտրությունը ---
+  document.addEventListener("selectstart", (e) => protectAction(e, "Տեքստի ընտրությունը արգելված է։"));
+  document.addEventListener("mousedown", (e) => {
+    // Թույլ տանք միայն այն կոճակները, որոնք պատճենման են
+    if (!e.target.closest("span[onclick]")) {
+      if (e.button === 0 || e.button === 2) {
+        protectAction(e, "Քաշելը կամ նշելը արգելված է։");
+      }
+    }
+  });
+  document.addEventListener("dragstart", (e) => protectAction(e, "Քաշելու գործողությունը արգելված է։"));
+
+  // --- Արգելել ստեղնաշարի կոդերը ---
+  document.addEventListener("keydown", (e) => {
+    const key = (e.key || "").toLowerCase();
+    const ctrl = e.ctrlKey || e.metaKey;
+
+    // Արգելել F1–F12
+    if (e.keyCode >= 112 && e.keyCode <= 123) {
+      protectAction(e, "F1–F12 կոճակները արգելված են։");
+      return false;
+    }
+
+    // Արգելել Ctrl + ...
+    if (ctrl && ["a", "c", "v", "s", "p"].includes(key)) {
+      protectAction(e, `Ctrl + ${key.toUpperCase()} արգելված է։`);
+      return false;
+    }
+  });
+
+  // --- Developer Tools հայտնաբերում ---
+  const devDetector = new Image();
+  Object.defineProperty(devDetector, "id", {
+    get: function () {
+      console.warn("🚫 Developer Tools բացվել է։");
+    },
+  });
+  console.log("%c", devDetector);
+
+  // --- Մոբայլ մենյուի բացման թույլտվություն ---
+  // Այս հատվածը թույլ է տալիս մոբայլ սարքերում բացել navbar menu-ն
+  document.addEventListener("click", (e) => {
+    const toggler = e.target.closest(".navbar-toggler");
+    if (toggler) {
+      const menu = document.querySelector(".navbar-collapse");
+      if (menu) menu.classList.toggle("show");
+    }
+  });
+})();
