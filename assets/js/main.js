@@ -228,9 +228,15 @@ function openModal() {
 
 
 
+
 (function () {
   // --- Արգելող ֆունկցիա ---
   function protectAction(e, text) {
+    // Թույլ ենք տալիս input, select, textarea դաշտերում
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (["input", "textarea", "select"].includes(tag)) return;
+
+    // Թույլ ենք տալիս նաև այն span-ները, որոնք ունեն onclick ֆունկցիա (օրինակ՝ պատճենման կոճակներ)
     if (!e.target.closest("span[onclick]")) {
       e.preventDefault();
       e.stopPropagation();
@@ -240,22 +246,37 @@ function openModal() {
   }
 
   // --- Արգելել աջ կոճակը ---
-  document.addEventListener("contextmenu", (e) => protectAction(e, "Աջ կոճակը արգելված է։"));
+  document.addEventListener("contextmenu", (e) =>
+    protectAction(e, "Աջ կոճակը արգելված է։")
+  );
 
-  // --- Արգելել ձախ մկնիկի քաշումը և ընտրությունը ---
-  document.addEventListener("selectstart", (e) => protectAction(e, "Տեքստի ընտրությունը արգելված է։"));
+  // --- Արգելել տեքստի նշումը (բացառությամբ input, select, textarea) ---
+  document.addEventListener("selectstart", (e) =>
+    protectAction(e, "Տեքստի ընտրությունը արգելված է։")
+  );
+
+  // --- Արգելել քաշելը կամ նշելը ---
   document.addEventListener("mousedown", (e) => {
-    // Թույլ տանք միայն այն կոճակները, որոնք պատճենման են
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (["input", "textarea", "select"].includes(tag)) return;
     if (!e.target.closest("span[onclick]")) {
       if (e.button === 0 || e.button === 2) {
         protectAction(e, "Քաշելը կամ նշելը արգելված է։");
       }
     }
   });
-  document.addEventListener("dragstart", (e) => protectAction(e, "Քաշելու գործողությունը արգելված է։"));
+
+  // --- Արգելել drag գործողությունը ---
+  document.addEventListener("dragstart", (e) =>
+    protectAction(e, "Քաշելու գործողությունը արգելված է։")
+  );
 
   // --- Արգելել ստեղնաշարի կոդերը ---
   document.addEventListener("keydown", (e) => {
+    const tag = (e.target.tagName || "").toLowerCase();
+    // Թույլ ենք տալիս գրել input, textarea, select-ում
+    if (["input", "textarea", "select"].includes(tag)) return;
+
     const key = (e.key || "").toLowerCase();
     const ctrl = e.ctrlKey || e.metaKey;
 
@@ -282,7 +303,6 @@ function openModal() {
   console.log("%c", devDetector);
 
   // --- Մոբայլ մենյուի բացման թույլտվություն ---
-  // Այս հատվածը թույլ է տալիս մոբայլ սարքերում բացել navbar menu-ն
   document.addEventListener("click", (e) => {
     const toggler = e.target.closest(".navbar-toggler");
     if (toggler) {
@@ -291,3 +311,4 @@ function openModal() {
     }
   });
 })();
+
