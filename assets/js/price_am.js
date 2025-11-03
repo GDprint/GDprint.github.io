@@ -165,3 +165,44 @@ function calculateCanvasTotal() {
         canvasTotalDisplay.textContent = 'Արժեքը՝ 0 AMD';
     }
 }
+
+// Թռուցիկների տպագրություն
+function flyerCount() {
+	const rawSize = parseFloat(document.getElementById('flyerSize').value);
+	const sizeCost = rawSize / 1000;
+	const quantity = parseInt(document.getElementById('flyerQuantity').value);
+	const weight = document.getElementById('flyerWeight').value;
+	const type = document.getElementById('flyerType').value;
+
+	if (!rawSize || !quantity || quantity < 50) {
+		document.getElementById('totalFlyerCost').innerText = `Արժեքը: 0 AMD`;
+		document.getElementById('flyerDiscount').innerText = ``;
+		return;
+	}
+
+	let weightFactor = 1;
+	if (weight.includes("115")) weightFactor = 1.00;
+	if (weight.includes("150")) weightFactor = 1.1;
+	if (weight.includes("170")) weightFactor = 1.3;
+
+	let typeFactor = type === "Անփայլ" ? 1.00 : 1.10;
+
+	let baseCost = sizeCost * quantity * weightFactor * typeFactor;
+
+	let discount = 0;
+	if (quantity >= 1000) discount = 0.15;
+	else if (quantity >= 500) discount = 0.10;
+	else if (quantity >= 100) discount = 0.05;
+	else if (quantity >= 50) discount = 0.025;
+
+	let totalCost = baseCost - baseCost * discount;
+
+	if (discount > 0) {
+		document.getElementById('flyerDiscount').innerText = `Զեղչ՝ ${discount * 100}%`;
+	} else {
+		document.getElementById('flyerDiscount').innerText = `none`;
+	}
+
+	document.getElementById('totalFlyerCost').innerText = `Արժեքը: ${totalCost.toLocaleString()} AMD`;
+}
+
