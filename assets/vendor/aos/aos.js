@@ -87,6 +87,12 @@ document.getElementById('plotterCross').value = generateplotterCross();
     }
     document.getElementById('posterOrderForm').value = generateposterOrderForm();
 
+	function generateposterOrderForm() {
+        const randomDigits = Math.floor(1000 + Math.random() * 900000);
+        return `FLY-${randomDigits}`;
+    }
+    document.getElementById('flyerOrderID').value = generateposterOrderForm();
+
 
 //audio ֆունկցիա
 
@@ -128,5 +134,6 @@ autoCopy("span[onclick='copyprintable()']", "printable");
 autoCopy("span[onclick='copycalendar()']", "calendar");
 autoCopy("span[onclick='copyRollupOrder()']", "rollupOrder");
 autoCopy("span[onclick='copyCanvasOrder()']", "CanvasOrder");
+autoCopy("span[onclick='copyflyerOrderID()']", "flyerOrderID");
 
 
