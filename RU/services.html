@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
+
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>GDprinting</title>
@@ -88,13 +89,9 @@
 					</ul>
 					<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 				</nav>
-
 			</div>
-
 		</div>
-
 	</header>
-
 	<main class="main">
 
 		<!-- Page Title -->
@@ -119,28 +116,90 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<!--https://formsubmit.co/el/litota               -->
+					
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-							<div class="mb-3">
-								<label for="fullName" class="form-label">Полное название</label>
+						<div style="display: flex; justify-content: space-between;" class="mb-3">
+    				<input name="ID" class="form-control" type="text" id="wideFormat" readonly>
+   						 <span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyWideFormat()">Копировать</span>
+						</div>
+
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="fullName" class="form-label">Полное название</label>
 								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Тел.</label>
+								</div>
+								<div class="col-md-6">
+									<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Эл. Адрес</label>
+						</div>
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="email" class="form-label">Эл. Адрес</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
+									</div>
+									<div class="col-md-6">
+										<label for="select" class="form-label">Выберите материал</label>
+										<select name="Նյութ" class="form-select" id="material" required>
+											<option name="Նյութ" value="Banner">Баннер</option>
+											<option name="Նյութ" value="Banner+ողակ">Баннер + люверсы</option>
+											<option name="Նյութ" value="Samokley">Самоклеящаяся пленка</option>
+											<option name="Նյութ" value="Setka Samokley">Самоклеящаяся пленка с отверстиями</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="length" class="form-label">Высота</label>
+								<input name="Բարձրություն" type="number" min="0.5" step="0.01" class="form-control" id="height" required>
+									</div>
+									<div class="col-md-6">
+										<label for="width" class="form-label">Ширина</label>
+								<input name="Լայնություն" type="number" min="0.5" step="0.01" class="form-control" id="width" required>
+									</div>
+								</div>
+							</div>
+								<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="borderCut" class="form-label">Контурная резка</label>
+										<select name="Եզրագծային կտրվածք" class="form-select" id="borderCut">
+											<option name="Առանց կտրվածքի" value="0" selected>Без резки</option>
+											<option name="Կտրվածքով" value="100">С резкой</option>
+										</select>
+									</div>
+									<div id="eyeletWrapper" class="col-md-6">
+										<label class="form-label">Количество люверсов</label>
+										<input name="Ողակների-քանակ" type="number" id="eyeletCount" class="form-control" min="8" step="1" data-manual="false" />
+									</div>
+								</div>
 							</div>
 
-							<div class="mb-3">
-								<label for="length" class="form-label">Высота</label>
-								<input name="Բարձրություն" type="number" min="0" step="0.01" class="form-control" id="height" required>
-							</div>
-							<div class="mb-3">
-								<label for="width" class="form-label">Ширина</label>
-								<input name="Լայնություն" type="number" min="0" step="0.01" class="form-control" id="width" required>
+							<!-- ⚠️ Զգուշացման Modal -->
+							<div class="modal fade" id="eyeletWarningModal" tabindex="-1" aria-labelledby="eyeletWarningLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content border-danger">
+										<div class="modal-header bg-danger text-white">
+											<h5 style="color: #fff; font-weight: bold; text-transform: uppercase;" class="modal-title" id="eyeletWarningLabel">Предупреждение</h5>
+											<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<div style=" display: flex; justify-content: center; margin: 0; padding: 0;" class="war">
+												<i style="color: red; margin: 0; padding: 0; font-size: 144px;" class="bi bi-exclamation-triangle-fill"></i>
+											</div>
+
+											<p style="text-align: center; color: red; font-weight: bolder;">Указанное количество люверсов слишком мало, среднее рекомендуемое количество в зависимости от размера предлагается автоматически.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Понятно</button>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="servicePackage" class="form-label">Службы пакет</label>
@@ -150,14 +209,11 @@
 									<option name="Էկոնոմ" value="7800">Premium</option>
 									<option name="Պրեմիում" value="10560">Gold</option>
 								</select>
-
 							</div>
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
 							</div>
-
-
 							<div style="display: flex;
 							align-items: center; justify-content: space-between;" class="mb-3">
 								<button style="background-color: black; border: none;" type="submit" class="btn btn-primary">Заказать</button>
@@ -188,31 +244,50 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-							<div class="mb-3">
-								<label for="fullName" class="form-label">Полное название</label>
-								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Тел.</label>
-								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
-							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Эл. Адрес</label>
-								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
-							</div>
+							<div style="display: flex;
+							align-items: center; justify-content: space-between;" class="mb-3">
 
-							<div class="mb-3">
-								<label for="length" class="form-label">Высота</label>
-								<input name="Բարձրություն" type="number" min="0" step="0.01" class="form-control" id="height" required>
+								<input name="ID" class="form-control" type="text" id="plotterCross" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyplotterCross()">Копировать</span>
+
+
 							</div>
-							<div class="mb-3">
-								<label for="width" class="form-label">Ширина</label>
-								<input name="Լայնություն" type="number" min="0" step="0.01" class="form-control" id="width" required>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="fullName" class="form-label">Полное название</label>
+								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
+								</div>
+								<div class="col-md-6">
+									<label for="telNumber" class="form-label">Номер телефона</label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+										<label for="email" class="form-label">Эл. Адрес</label>
+								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
+								</div>
+								<div class="col-md-6">
+									<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
 								<input name="Ֆայլի հղում" type="url" class="form-control" id="fileLink" required>
+								</div>
 							</div>
+						</div>		
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="length" class="form-label">Высота</label>
+								<input name="Բարձրություն" type="number" min="0" step="0.01" class="form-control" id="height" required>
+								</div>
+								<div class="col-md-6">
+										<label for="width" class="form-label">Ширина</label>
+								<input name="Լայնություն" type="number" min="0" step="0.01" class="form-control" id="width" required>
+								</div>
+							</div>
+						</div>
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
@@ -239,40 +314,55 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-							<div class="mb-3">
+							<div style="display: flex; justify-content: space-between; align-content: center;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="businessCard" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copybusinessCard()">Копировать</span>
+
+							</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
 								<label for="fullName" class="form-label">Полное название</label>
 								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
-							</div>
-							<div class="mb-3">
+								</div>
+								<div class="col-md-6">
 								<label for="telNumber" class="form-label">Тел.</label>
 								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Эл. Адрес</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="email" class="form-label">Эл. Адрес</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
-							</div>
-							<div class="mb-3">
-								<label for="quantity" class="form-label">Тираж</label>
+								</div>
+								<div class="col-md-6">
+									<label for="quantity" class="form-label">Тираж</label>
 								<input name="Տպաքանակը" id="quantity" min="1000" value="1000" type="number" class="form-control" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="paperType" class="form-label">Тип бумаги</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="paperType" class="form-label">Тип бумаги</label>
 								<select name="Թղտի տեսակը" class="form-select" id="paperType" required>
 									<option selected disabled>Выберите тип бумаги</option>
 									<option name="glossy" value="glossy">Glossy</option>
 									<option name="matte" value="matte">Matte</option>
 								</select>
-							</div>
-							<div class="mb-3">
-								<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
+								</div>
+								<div class="col-md-6">
+						<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
 								<input name="Պատկեր/Ֆայլի հղում" type="url" class="form-control" id="fileLink" required>
+								</div>
 							</div>
+						</div>
+						
 							<div class="mb-3">
 								<label class="form-label" for="selected-design">Выбранный дизайн</label>
 								<input class="form-control" type="text" id="selected-design" name="Ընտրված դիզայն" value="" readonly>
-
-
-
 								<div id="design-modal" class="modal">
 									<div class="modal-content design">
 										<div style="display: flex; justify-content: space-between;" class="category">
@@ -292,12 +382,9 @@
 												<option value="hotel">Հյուրանոցային և ռեստորանային բիզնես</option>
 -->
 											</select>
-
 											<span class="close">&times;</span>
 
 										</div>
-
-
 										<div id="cards" class="design-grid">
 											<!-- Example designs -->
 
@@ -2002,7 +2089,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Photo Printing Form Modal -->
 		<div class="modal fade" id="photoPrintingModal" tabindex="-1" aria-labelledby="photoPrintingLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2013,35 +2099,64 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-							<div class="mb-3">
-								<label for="fullName" class="form-label">Полное название</label>
+							<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="photoPrint" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyphotoPrint()">Копировать</span>
+							</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+										<label for="fullName" class="form-label">Полное название</label>
 								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Тел.</label>
+								</div>
+								<div class="col-md-6">
+										<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Эл. Адрес</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="email" class="form-label">Эл. Адрес</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
-							</div>
-							<div class="mb-3">
-								<label for="size" class="form-label">Размер бумаги</label>
+								</div>
+								<div class="col-md-6">
+									<label for="size" class="form-label">Размер бумаги</label>
 								<select name="Թղթի չափս" class="form-select" id="size" onchange="photoCount()" required>
 									<option name="A4 չափս 400" value="400">A4</option>
 									<option name="A5 չափս 200" value="200">A5</option>
 									<option name="A5 չափս 100" value="100">A6</option>
 								</select>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="quantity" class="form-label">Распечатки количество</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+										<label for="quantity" class="form-label">Распечатки количество</label>
 								<input name="Տպագրության քանակը" id="qanak" min="1" placeholder="Введите количество" oninput="photoCount()" required type="number" class="form-control" required>
-							</div>
-							<div class="mb-3">
-								<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
+								</div>
+								<div class="col-md-6">
+										<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
 								<input name="Պատկեր/Ֆայլի հղում" type="url" class="form-control" id="fileLink" required>
+								</div>
 							</div>
-
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									
+								</div>
+								<div class="col-md-6">
+									
+								</div>
+							</div>
+						</div>
+						<div class="mb-3">
+								<label for="orderDescription" class="form-label">Описание заказа</label>
+								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" required></textarea>
+							</div>
 							<div style="display: flex;
 							align-items: center; justify-content: space-between;" class="mb-3">
 								<button style="background-color: black; border: none;" type="submit" class="btn btn-primary">Заказать</button>
@@ -2059,9 +2174,9 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Printable Format Form Modal -->
 		<div class="modal fade" id="printableFormatModal" tabindex="-1" aria-labelledby="printableFormatLabel" aria-hidden="true">
+		
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -2070,33 +2185,49 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-							<div class="mb-3">
-								<label for="fullName" class="form-label">Полное название</label>
+							<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="printable" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyprintable()">Копировать</span>
+							</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="fullName" class="form-label">Полное название</label>
 								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Тел.</label>
+								</div>
+								<div class="col-md-6">
+										<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Эл. Адрес</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="email" class="form-label">Эл. Адрес</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
-							</div>
-							<div class="mb-3">
-								<label for="printType" class="form-label">Тип печати</label>
+								</div>
+								<div class="col-md-6">
+										<label for="printType" class="form-label">Тип печати</label>
 								<select name="Տպագրության տեսակը" class="form-select" id="printType" onchange="blankForms()" required>
 									<option name="Տպագրության տեսակը 30դր" value="30">A4 Черное и белое</option>
 									<option name="Տպագրության տեսակը 50դր" value="50">A4 Цветно</option>
 								</select>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="blank" class="form-label">Распечатки количество</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="blank" class="form-label">Распечатки количество</label>
 								<input name="Տպագրության քանակը" type="number" id="blank" min="1" placeholder="Введите количество" class="form-control" oninput="blankForms()" required>
-							</div>
-							<div class="mb-3">
-								<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
+								</div>
+								<div class="col-md-6">
+									<label for="fileLink" class="form-label">Файл/ссылка на Файл</label>
 								<input name="Պատկեր/Ֆայլի հղում" type="url" class="form-control" id="fileLink" required>
+								</div>
 							</div>
+						</div>
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Введите детали заказа" class="form-control" id="orderDescription" rows="3" required></textarea>
@@ -2118,7 +2249,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Modal Calendar Order Registration Form -->
 		<div class="modal fade" id="calendarOrderModal" tabindex="-1" aria-labelledby="calendarOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2129,39 +2259,55 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="calendarOrderForm">
-							<div class="mb-3">
-								<label for="fullName" class="form-label">Имя Фамилия</label>
+						<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="calendar" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copycalendar()">Копировать</span>
+							</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="fullName" class="form-label">Имя Фамилия</label>
 								<input name="Ամբողջական անունը" type="text" class="form-control" id="fullName" required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Тел.</label>
+								</div>
+								<div class="col-md-6">
+									<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Հեռ. համար" type="tel" class="form-control" id="telNumber" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Эл. Адрес</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="email" class="form-label">Эл. Адрес</label>
 								<input name="Էլ հասցե" type="email" class="form-control" id="email" required>
-							</div>
-							<div class="mb-3">
-								<label for="calendarType" class="form-label">Тип календаря</label>
+								</div>
+								<div class="col-md-6">
+									<label for="calendarType" class="form-label">Тип календаря</label>
 								<select name="Օրացույցի տեսակը" class="form-select" id="calendarType" required>
 									<option name="Ընտրեք օրացույցի տիպը" selected disabled>Выберите тип календаря</option>
 									<option name="Օրացույցի տեսակը" value="Սեղանի օրացույց">Настольный календарь</option>
 									<option name="Օրացույցի տեսակը" value="Պատի օրացույց">Настенный календарь</option>
 									<option name="Օրացույցի տեսակը" value="Գրպանի օրացույց">Карманный календарь</option>
 								</select>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="printQuantity" class="form-label">Количество копий</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="printQuantity" class="form-label">Количество копий</label>
 								<input name="Պատճենների քանակ" type="number" class="form-control" id="printQuantity" placeholder="Введите количество копий" required>
-							</div>
-							<div class="mb-3">
-								<label for="paperType" class="form-label">Тип бумаги:</label>
+								</div>
+								<div class="col-md-6">
+										<label for="paperType" class="form-label">Тип бумаги:</label>
 								<select class="form-select" id="paperType" required>
 									<option name="Ընտրեք թղթի տեսակը" selected disabled>Выберите тип бумаги</option>
 									<option name="Փայլուն" value="glossy">блестящий</option>
 									<option name="Մատվի" value="matte">Матви</option>
 								</select>
+								</div>
 							</div>
+						</div>
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" placeholder="Введите детали заказа" required></textarea>
@@ -2185,7 +2331,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Modal Roll-up Order Registration Form -->
 		<div class="modal fade" id="RollupOrderModal" tabindex="-1" aria-labelledby="RollupOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2196,20 +2341,30 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="RollupOrderForm">
-							<div class="mb-3">
+						<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="RollupOrder" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyRollupOrder()">Копировать</span>
+							</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
 								<label for="fullName" class="form-label">Фамилия Имя</label>
 								<input name="Фамилия Имя" type="text" class="form-control" id="fullName" placeholder="Введите ваше имя и фамилию" required>
-							</div>
-							<div class="mb-3">
+								</div>
+								<div class="col-md-6">
 								<label for="telNumber" class="form-label">Телефонный номер</label>
 								<input name="Телефонный номер" type="tel" class="form-control" id="telNumber" placeholder="Введите ваш телефонный номер" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Электронная почта</label>
+						</div>
+						<div class="mb-3 col-mb-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="email" class="form-label">Электронная почта</label>
 								<input name="Электронная почта" type="email" class="form-control" id="email" placeholder="Введите ваш электронный адрес" required>
-							</div>
-							<div class="mb-3">
-								<label class="form-label" for="rullsize">Выберите размер:</label>
+								</div>
+								<div class="col-md-6">
+										<label class="form-label" for="rullsize">Выберите размер:</label>
 								<select name="Выберите размер" class="form-select" id="rullsize">
 									<option value="0" selected disabled>Выберите размер</option>
 									<option name="Rull_UP_60x160" value="10150">60x160</option>
@@ -2219,15 +2374,22 @@
 									<option name="Rull_UP_120x200" value="25350">120x200</option>
 									<option name="Rull_UP_150x200" value="31700">150x200</option>
 								</select>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label class="form-label" for="rullquantity">Количество</label>
+						</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+											<label class="form-label" for="rullquantity">Количество</label>
 								<input name="Количество" class="form-control" type="number" id="rullquantity" min="1" value="1">
-							</div>
-							<div class="mb-3">
-								<label class="form-label" for="fileLink">Ссылка на Google Drive:</label>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label" for="fileLink">Ссылка на Google Drive:</label>
 								<input class="form-control" type="url" name="GoogleLink">
+								</div>
 							</div>
+						</div>	
+						
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Описание заказа" class="form-control" id="orderDescription" rows="3" placeholder="Введите подробности заказа" required></textarea>
@@ -2244,14 +2406,13 @@
 							<input type="hidden" name="_captcha" value="false">
 							<input type="hidden" name="_autoresponse" value="Ваш заказ успешно зарегистрирован">
 							<input type="hidden" name="_subject" value="Печать Roll UP Stand">
-							<input type="hidden" name="_next" value="https://gdprint.github.io/services.html">
+							<input type="hidden" name="_next" value="https://gdprint.github.io/RU/services.html">
 
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- Modal Canvas Printing Order Registration Form -->
 		<div class="modal fade" id="CanvasOrderModal" tabindex="-1" aria-labelledby="CanvasOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2262,20 +2423,30 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="CanvasOrderForm">
-							<div class="mb-3">
+							<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="CanvasOrder" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyCanvasOrder()">Копировать</span>
+							</div>
+							<div class="md-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
 								<label for="fullName" class="form-label">Фамилия Имя</label>
 								<input name="Фамилия Имя" type="text" class="form-control" id="fullName" placeholder="Введите ваше имя и фамилию" required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Телефонный номер</label>
+								</div>
+								<div class="col-md-6">
+										<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Телефонный номер" type="tel" class="form-control" id="telNumber" placeholder="Введите ваш телефонный номер" required>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Электронная почта</label>
+						</div>
+							<div class="md-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label for="email" class="form-label">Электронная почта</label>
 								<input name="Электронная почта" type="email" class="form-control" id="email" placeholder="Введите ваш электронный адрес" required>
-							</div>
-							<div class="mb-3">
-								<label class="form-label" for="canvasize">Выберите размер</label>
+									</div>
+									<div class="col-md-6">
+									<label class="form-label" for="canvasize">Выберите размер</label>
 								<select name="Выбранный размер" class="form-select" id="canvasize">
 									<option value="">-- Выберите размер --</option>
 									<optgroup label="Стандартные размеры"> </optgroup>
@@ -2296,22 +2467,26 @@
 									<option value="100x100">100 x 100 см</option>
 									<option value="120x180">120 x 180 см</option>
 								</select>
+								
+									</div>
+								</div>
 							</div>
-							<div class="mb-3">
-								<label class="form-label" for="quantity">Количество</label>
-								<input name="Количество" class="form-control" type="number" id="canvaquantity" value="1" min="1">
-							</div>
-							<div class="mb-3">
-								<label class="form-label" for="fileLink">Ссылка на Google Drive:</label>
-								<input class="form-control" type="url" name="GoogleLink">
+							<div class="md-3 col md-12">
+								<div class="row">
+									<div class="col-md-6">
+									<label class="form-label" for="quantity">Количество</label>
+								<input name="Количество" class="form-control" type="number" id="canvaquantity" value="1" min="1"></div>
+									<div class="col-md-6">
+									<label class="form-label" for="fileLink">Ссылка на Google Drive:</label>
+									<input class="form-control" type="url" name="GoogleLink">
+									</div>
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Описание заказа" class="form-control" id="orderDescription" rows="3" placeholder="Введите подробности заказа" required></textarea>
 							</div>
-
-							<div style="display: flex;
-					align-items: center; justify-content: space-between;" class="mb-3">
+							<div style="display: flex; align-items: center; justify-content: space-between;" class="mb-3">
 								<button style="background-color: black; border: none;" type="submit" class="btn btn-primary">Заказать</button>
 								<div class="result">
 									<p style="display: flex; justify-content: center; font-weight: bolder; color: #000; margin: 0px auto; align-items: center;" id="canvatotal">Цена: 0 AMD</p>
@@ -2328,8 +2503,6 @@
 				</div>
 			</div>
 		</div>
-
-
 		<!-- Modal posterForm Order Registration Form -->
 		<div class="modal fade" id="posterForm" tabindex="-1" aria-labelledby="calendarOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -2340,29 +2513,45 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST" id="calendarOrderForm">
-							<div class="mb-3">
-								<label for="fullName" class="form-label">Имя Фамилия</label>
+							<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="posterOrderForm" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copyposterOrderForm()">Копировать</span>
+							</div>
+						<div class="mb-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="fullName" class="form-label">Имя Фамилия</label>
 								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Введите свое имя и фамилию." required>
-							</div>
-							<div class="mb-3">
-								<label for="telNumber" class="form-label">Номер телефона</label>
+								</div>
+								<div class="col-md-6">
+									<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Հեռ." type="tel" class="form-control" id="telNumber" placeholder="Введите свой номер телефона." required>
+								</div>
 							</div>
-							<div class="mb-3">
+						</div>
+						<div class="md-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
 								<label for="email" class="form-label">Эл. адрес</label>
 								<input name="Էլ․ հասցե" type="email" class="form-control" id="email" placeholder="Введите свой адрес электронной почты." required>
+								</div>
+								<div class="col-md-6">
+								<label for="fullName" class="form-label">Название организации</label>
+							<input name="Կազմակերպության անվանումը" type="text" class="form-control" id="fullName" placeholder="Введите название вашей компании" required></div>
 							</div>
-							<label for="fullName" class="form-label">Название организации</label>
-							<input name="Կազմակերպության անվանումը" type="text" class="form-control" id="fullName" placeholder="Введите название вашей компании" required>
-							<div class="mb-3">
-								<label for="squareMeters">Введите квадратных метров.</label>
+						</div>
+						<div class="md-3 col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+								<label for="squareMeters">квадратных метров.</label>
 								<input name="Քառակուսի մետր" type="number" id="squareMeters" class="form-control" min="0.1" step="0.1" placeholder="Квадратный метр" oninput="PostForms()">
-							</div>
-
-							<div class="mb-3">
+								</div>
+								<div class="col-md-6">
 								<label for="printQuantity" class="form-label">Адрес организации</label>
 								<input name="Կազմակերպության հասցե" type="text" class="form-control" id="printQuantity" placeholder="Введите адрес организации" required>
+								</div>
 							</div>
+						</div>
 							<div class="mb-3">
 								<label for="orderDescription" class="form-label">Описание заказа</label>
 								<textarea name="Պատվերի նկարագրություն" class="form-control" id="orderDescription" rows="3" placeholder="Введите детали заказа" required></textarea>
@@ -2385,8 +2574,7 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Modal posterForm Order Registration Form -->
+		<!-- Modal cupForm Order Registration Form -->
 		<div class="modal fade" id="cupForm" tabindex="-1" aria-labelledby="cupOrderLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -2396,23 +2584,36 @@
 					</div>
 					<div class="modal-body">
 						<form action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
-
-							<div class="mb-3">
+							<div style="display: flex; justify-content: space-between;" class="mb-3">
+								<input name="ID" class="form-control" type="text" id="cupOrderForm" readonly>
+								<span style="background-color: red; color: #fff; cursor: pointer; border-radius: 5px; padding: 5px 10px; font-weight: 500; border: none;" onclick="copycupOrderForm()">Копировать</span>
+							</div>
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										
 								<label for="fullName" class="form-label">Имя Фамилия</label>
 								<input name="Անուն Ազգանուն" type="text" class="form-control" id="fullName" placeholder="Введите свое имя и фамилию" required>
-							</div>
-							<div class="mb-3">
+							
+									</div>
+									<div class="col-md-6">
 								<label for="telNumber" class="form-label">Номер телефона</label>
 								<input name="Հեռ." type="tel" class="form-control" id="telNumber" placeholder="Введите свой номер телефона" required>
 							</div>
-							<div class="mb-3">
+								</div>
+							</div>
+							
+							<div class="mb-3 col-md-12">
+								<div class="row">
+									<div class="col-md-6">
 								<label for="email" class="form-label">Эл. адрес</label>
 								<input name="Էլ․ հասցե" type="email" class="form-control" id="email" placeholder="Введите адрес электронной почты адрес" required>
 							</div>
-
-							<div class="mb-3">
+									<div class="col-md-6">
 								<label for="Sarph">Количество чашек</label>
 								<input name="Բաժակների քանակ" type="number" id="Sarph" class="form-control" placeholder="Введите количество чашек" oninput="SarphForms()" required>
+							</div>
+								</div>
 							</div>
 
 							<div class="mb-3">
@@ -2441,8 +2642,96 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
+		<!-- Modal Թռուցիկների տպագրության Registration Form -->
+		<div class="modal fade" id="flyerModal" tabindex="-1" aria-labelledby="flyerPrintingLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="flyerPrintingLabel">Печать флаеров </h5>
+				<small id="flyerDiscount" style="margin-left: 10px; color: red; font-weight: bolder;"></small>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
 
+			<div class="modal-body payment-box">
+				<form id="flyerForm" action="#" method="POST">
+					<div style="display:flex; justify-content:space-between;" class="mb-3">
+						<input name="ID" class="form-control" type="text" id="flyerOrderID" readonly>
+						<span style="background-color:red; color:#fff; cursor:pointer; border-radius:5px; padding:5px 10px;" onclick="copyflyerOrderID()">Копировать</span>
+					</div>
+					<div class="mb-3 col-md-12">
+						<div class="row">
+							<div class="col-md-6">
+								<label for="flyerFullName" class="form-label">Имя Фамилия </label>
+								<input name="Անուն Ազգանուն" type="text" class="form-control" id="flyerFullName" required>
+							</div>
+							<div class="col-md-6">
+								<label for="flyerTelNumber" class="form-label">Номер телефона  </label>
+								<input name="Հեռ. համար" type="tel" class="form-control" id="flyerTelNumber" required>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="flyerEmail" class="form-label">Электронная почта</label>
+						<input name="Էլ հասցե" type="email" class="form-control" id="flyerEmail" required>
+					</div>
+					<div class="mb-3 col-md-12">
+						<div class="row">
+							<div class="col-md-6">
+								<label for="flyerSize" class="form-label">Формат бумаги </label>
+								<select name="Թղթի չափը" class="form-select" id="flyerSize" onchange="flyerCount()" required>
+									<option value="300">A4</option>
+									<option value="195">A5</option>
+									<option value="100">A4 1/3</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">(Минимум 50 шт.)</label>
+								<input name="Տպաքանակ" id="flyerQuantity"  placeholder="Введите количество" oninput="flyerCount()" required type="number" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="mb-3 col-md-12">
+						<div class="row">
+							<div class="col-md-6">
+								<label for="flyerWeight" class="form-label">Плотность бумаги</label>
+								<select name="Թղթի խտություն" class="form-select" id="flyerWeight" onchange="flyerCount()">
+									<option>115г мелованная </option>
+									<option>150г мелованная</option>
+									<option>170г мелованная</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="flyerType" class="form-label">Тип бумаги</label>
+								<select name="Թղթի տեսակը" class="form-select" id="flyerType" onchange="flyerCount()">
+									<option>Глянцевый</option>
+									<option>Матовый</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="flyerDescription" class="form-label">Описание заказа </label>
+						<textarea name="Պատվերի նկարագրություն" class="form-control" id="flyerDescription" rows="3" required></textarea>
+					</div>
+					<div style="display:flex; align-items:center; justify-content:space-between;" class="mb-3">
+						<button style="background-color:black; border:none;" type="submit" class="btn btn-primary">Заказать</button>
+						<div class="result">
+							<p id="totalFlyerCost" style="font-weight:bolder; margin:0;">Цена: 0 AMD</p>
+						</div>
+					</div>
+					<input type="hidden" name="_template" value="table">
+					<input type="hidden" name="_captcha" value="false">
+					<input type="hidden" name="_autoresponse" value="Ձեր պատվերը հաջողությամբ գրանցվել է։">
+					<input type="hidden" name="_subject" value="Թռուցիկների տպագրություն">
+					<input type="hidden" name="_next" value="https://gdprint.github.io/services.html">
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+	
 		<!--Modal end-->
 		<!-- Services Section -->
 		<section id="services" class="services section">
@@ -2550,7 +2839,16 @@
 							<button style="background-color: black; border: none;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#posterForm">Оформить заказ</button>
 						</div>
 					</div>
-
+					
+					<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="1000">
+						<div class="service-item position-relative">
+							<div class="icon">
+								<i class="bi bi-file-earmark-image-fill"></i>
+							</div>
+							<h3>Печать<br> флаеров</h3>
+							<button style="background-color: black; border: none;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flyerModal">Оформить заказ</button>
+						</div>
+					</div>
 					<!-- End Service Item -->
 				</div>
 
@@ -2607,7 +2905,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 	</main>
 
 	<footer id="footer" class="footer position-relative dark-background">
@@ -2702,6 +3000,7 @@
 	<script src="../assets/js/main.js"></script>
 	<script src="../assets/js/order_ru.js"></script>
 	<script src="../assets/js/price_ru.js"></script>
+	<script src="../assets/js/word-list.js"></script>
 	<script src="../assets/js/Business_Card.js"></script>
 	<script>
 		document.querySelectorAll("p").forEach(paragraph => {
@@ -2713,6 +3012,99 @@
 		});
 
 	</script>
+<audio id="copyAudio-ru" src="Anahit-ru.mp3" preload="auto"></audio>
+
+<script>
+	//audio ֆունկցիա
+// Audio files for different languages
+const audioFiles = {
+    'hy': 'assets/audio/click.wav', // Armenian audio
+    'ru': '../assets/audio/click.wav', // Russian audio
+    'en': '../assets/audio/click.wav'  // English audio
+};
+
+// Function to get current language from URL or HTML
+function getCurrentLanguage() {
+    const url = window.location.href;
+    if (url.includes('/RU/')) return 'ru';
+    if (url.includes('/EN/')) return 'en';
+    return 'hy'; // Default to Armenian
+}
+
+// Function to copy text and play audio
+function copyText(textElementId, audioLang = null) {
+    const textElement = document.getElementById(textElementId);
+    
+    if (!textElement) {
+        console.error('Element not found:', textElementId);
+        return;
+    }
+    
+    // Select the text
+    textElement.select();
+    textElement.setSelectionRange(0, 99999); // For mobile devices
+    
+    // Copy text to clipboard
+    try {
+        const successful = document.execCommand('copy');
+        
+        if (successful) {
+            // Play audio feedback
+            const lang = audioLang || getCurrentLanguage();
+            playAudio(lang);
+            
+            // Show visual feedback
+            showCopyFeedback(textElementId);
+        }
+    } catch (err) {
+        console.error('Copy failed:', err);
+        // Fallback: Use modern Clipboard API
+        navigator.clipboard.writeText(textElement.value).then(function() {
+            const lang = audioLang || getCurrentLanguage();
+            playAudio(lang);
+            showCopyFeedback(textElementId);
+        }).catch(function(err) {
+            console.error('Clipboard API failed:', err);
+        });
+    }
+}
+
+// Function to play audio
+function playAudio(lang) {
+    const audioUrl = audioFiles[lang] || audioFiles['ru']; // Default to Armenian
+    const audio = new Audio(audioUrl);
+    audio.play().catch(e => console.log('Audio play failed:', e));
+}
+
+// Function to show visual feedback
+function showCopyFeedback(elementId) {
+    // Find the message element
+    const msgElement = document.querySelector(`[data-for="${elementId}"]`);
+    
+    if (msgElement) {
+        msgElement.style.display = 'block';
+        setTimeout(() => {
+            msgElement.style.display = 'none';
+        }, 2000);
+    }
+}
+
+// Initialize copy functions when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Add specific copy functions for each form
+    window.copyWideFormat = function() { copyText('wideFormat'); }
+    window.copyplotterCross = function() { copyText('plotterCross'); }
+    window.copybusinessCard = function() { copyText('businessCard'); }
+    window.copyphotoPrint = function() { copyText('photoPrint'); }
+    window.copycalendar = function() { copyText('calendar'); }
+    window.copyRollupOrder = function() { copyText('RollupOrder'); }
+    window.copyCanvasOrder = function() { copyText('CanvasOrder'); }
+    window.copycupOrderForm = function() { copyText('cupOrderForm'); }
+    window.copyflyerOrderID = function() { copyText('flyerOrderID'); }
+    window.copyprintable = function() { copyText('printable'); }
+    window.copyposterOrderForm = function() { copyText('posterOrderForm'); }
+});
+</script>
 
 </body>
 
