@@ -2847,6 +2847,7 @@ form {
 
 label {
 	margin: 10px 0 5px;
+	font-weight: bolder;
 }
 
 input {
@@ -2903,7 +2904,7 @@ form button {
 }
 
 /*ID*/
-#wideFormat, #plotterCross, #businessCard, #photoPrint, #printable, #calendar, #cupOrderForm, #RollupOrder, #CanvasOrder, #posterOrderForm {
+#wideFormat, #plotterCross, #businessCard, #photoPrint, #printable, #calendar, #cupOrderForm, #RollupOrder, #CanvasOrder, #posterOrderForm,#flyerOrderID {
 	width: auto;
 	border: none;
 	text-decoration: none;
@@ -2917,4 +2918,9 @@ form button {
 	color: #888;
 	user-select: none;
 	pointer-events: none;
+}
+#copyMsg{
+	position: relative;
+	top: 30px;
+	font-size: 12px;
 }
