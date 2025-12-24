@@ -2577,6 +2577,7 @@
 							<div style="display: flex;
 							align-items: center; justify-content: space-between;" class="mb-3">
 								<button style="background-color: black; border: none;" type="submit" class="btn btn-primary">Պատվիրել</button>
+								
 								<div class="result">
 									<p style="display: flex; justify-content: center; font-weight: bolder; color: #000; margin: 0px auto; align-items: center;" id="canvatotal">Արժեքը: 0 AMD</p>
 								</div>
@@ -2740,7 +2741,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 					</div>
 					<div class="modal-body payment-box">
-						<form id="flyerForm" action="#" method="POST">
+						<form id="flyerForm" action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
 							<div style="display:flex; justify-content:space-between;" class="mb-3">
 								<input name="ID" class="form-control" type="text" id="flyerOrderID" readonly>
 								<span style="background-color:red; color:#fff; cursor:pointer; border-radius:5px; padding:5px 10px;" onclick="copyflyerOrderID()">Պատճենել</span>
@@ -2766,9 +2767,9 @@
 									<div class="col-md-6">
 										<label for="flyerSize" class="form-label">Թղթի չափը</label>
 										<select name="Թղթի չափը" class="form-select" id="flyerSize" onchange="flyerCount()" required>
-											<option value="300">A4</option>
-											<option value="195">A5</option>
-											<option value="100">A4 1/3</option>
+											<option name="A4" value="300">A4</option>
+											<option name="A5" value="195">A5</option>
+											<option name="A4 1/3" value="100">A4 1/3</option>
 										</select>
 									</div>
 									<div class="col-md-6">
@@ -2782,16 +2783,16 @@
 									<div class="col-md-6">
 										<label for="flyerWeight" class="form-label">Թղթի խտություն</label>
 										<select name="Թղթի խտություն" class="form-select" id="flyerWeight" onchange="flyerCount()">
-											<option>115գր կավճապատ</option>
-											<option>150գր կավճապատ</option>
-											<option>170գր կավճապատ</option>
+											<option name="115գր կավճապատ" value="115գր կավճապատ">115գր կավճապատ</option>
+											<option name="150գր կավճապատ" value="150գր կավճապատ">150գր կավճապատ</option>
+											<option name="170գր կավճապատ" value="170գր կավճապատ">170գր կավճապատ</option>
 										</select>
 									</div>
 									<div class="col-md-6">
 										<label for="flyerType" class="form-label">Թղթի տեսակը</label>
 										<select name="Թղթի տեսակը" class="form-select" id="flyerType" onchange="flyerCount()">
-											<option>Փայլուն</option>
-											<option>Անփայլ</option>
+											<option name="Թղթի տեսակը" value="Փայլուն">Փայլուն</option>
+											<option name="Թղթի տեսակը" value="Անփայլ">Անփայլ</option>
 										</select>
 									</div>
 								</div>
