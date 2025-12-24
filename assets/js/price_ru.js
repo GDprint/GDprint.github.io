@@ -1,23 +1,114 @@
-//Լայնաֆորմատ տպագրություն Calculator functionality
-document.getElementById('width').addEventListener('input', calculateCost);
-document.getElementById('height').addEventListener('input', calculateCost);
-document.getElementById('servicePackage').addEventListener('change', calculateCost);
+// ===== DOM Elements =====
+const widthEl = document.getElementById('width');
+const heightEl = document.getElementById('height');
+const packageEl = document.getElementById('servicePackage');
+const materialEl = document.getElementById('material');
+const borderCutEl = document.getElementById('borderCut');
 
-function calculateCost() {
-	const width = parseFloat(document.getElementById('width').value);
-	const height = parseFloat(document.getElementById('height').value);
-	const packageCost = parseFloat(document.getElementById('servicePackage').value);
+const eyeletWrapper = document.getElementById('eyeletWrapper');
+const eyeletCountEl = document.getElementById('eyeletCount');
+const totalCostEl = document.getElementById('totalCost');
 
-	if (!width || !height || !packageCost || width <= 0 || height <= 0) {
-		document.getElementById('totalCost').innerText = `Цена:  0 AMD`;
-		return;
-	}
+// Minimum քանակ
+const MIN_EYELETS = 8;
 
-	const area = width * height;
-	const totalCost = packageCost * area;
+// Bootstrap modal instance
+const eyeletWarningModal = new bootstrap.Modal(document.getElementById('eyeletWarningModal'));
 
-	document.getElementById('totalCost').innerText = `Цена: ${totalCost.toFixed(0)} AMD`;
+// ===== Event Listeners =====
+widthEl.addEventListener('input', () => onSizeChange());
+heightEl.addEventListener('input', () => onSizeChange());
+packageEl.addEventListener('change', () => calculateCost());
+materialEl.addEventListener('change', () => calculateCost());
+borderCutEl.addEventListener('change', () => calculateCost());
+
+eyeletCountEl.addEventListener('input', () => {
+    eyeletCountEl.dataset.manual = 'true';
+    calculateCost();
+});
+
+// ===== Functions =====
+function onSizeChange() {
+    eyeletCountEl.dataset.manual = 'false'; // Չեղարկել ձեռքով փոփոխությունը
+    calculateCost(true);
 }
+
+function calculateCost(forceAutoEyelets = false) {
+    const width = parseFloat(widthEl.value);
+    const height = parseFloat(heightEl.value);
+    const packageCost = parseFloat(packageEl.value);
+    const material = materialEl.value;
+    const borderPrice = parseFloat(borderCutEl.value);
+
+    if (!width || !height || !packageCost) {
+        totalCostEl.innerText = 'Цена: 0 AMD';
+        return;
+    }
+
+    let totalCost = width * height * packageCost;
+
+    // ===== Եզրագծային կտրվածք =====
+    if (borderPrice > 0) {
+        totalCost += 2 * (width + height) * borderPrice;
+    }
+
+    // ===== Banner + Ողակ =====
+    if (material === 'Banner+ողակ') {
+        const offset = 0.024; // 1.2 սմ × 2
+        const effW = Math.max(width - offset, 0);
+        const effH = Math.max(height - offset, 0);
+
+        const eyeletsW = Math.floor(effW / 0.3) + 1;
+        const eyeletsH = Math.floor(effH / 0.3) + 1;
+
+        const autoEyelets = (eyeletsW * 1) + (eyeletsH * 2);
+
+        eyeletWrapper.style.display = 'block';
+
+        // Ավտոմատ դնում ենք առաջարկվող քանակը
+        if (forceAutoEyelets || eyeletCountEl.dataset.manual !== 'true') {
+            eyeletCountEl.value = Math.max(autoEyelets, MIN_EYELETS);
+        }
+
+        let finalEyelets = parseInt(eyeletCountEl.value || autoEyelets);
+
+        // Minimum + Modal
+        if (finalEyelets < MIN_EYELETS) {
+            finalEyelets = MIN_EYELETS;
+            eyeletCountEl.value = finalEyelets;
+            eyeletWarningModal.show();
+        }
+
+        totalCost += finalEyelets * 100;
+
+    } else {
+        eyeletWrapper.style.display = 'none';
+        eyeletCountEl.value = '';
+        eyeletCountEl.dataset.manual = 'false';
+    }
+
+    totalCostEl.innerText = `Цена: ${totalCost.toFixed(0)} AMD`;
+}
+////Լայնաֆորմատ տպագրություն Calculator functionality
+//document.getElementById('width').addEventListener('input', calculateCost);
+//document.getElementById('height').addEventListener('input', calculateCost);
+//document.getElementById('servicePackage').addEventListener('change', calculateCost);
+//
+//function calculateCost() {
+//	const width = parseFloat(document.getElementById('width').value);
+//	const height = parseFloat(document.getElementById('height').value);
+//	const packageCost = parseFloat(document.getElementById('servicePackage').value);
+//
+//	if (!width || !height || !packageCost || width <= 0 || height <= 0) {
+//		document.getElementById('totalCost').innerText = `Цена:  0 AMD`;
+//		return;
+//	}
+//
+//	const area = width * height;
+//	const totalCost = packageCost * area;
+//
+//	document.getElementById('totalCost').innerText = `Цена: ${totalCost.toFixed(0)} AMD`;
+//}
 
 //Լուսանկարների տպագրություն Calculator functionality
 function photoCount() {
@@ -129,7 +220,7 @@ function calculateRollUpPrice() {
     const price = parseInt(rullSizeSelect.value) || 0;
     const quantity = parseInt(rullQuantityInput.value) || 1;
     const total = price * quantity;
-    rullTotalDisplay.textContent = "Цена: " + total.toLocaleString('ru-RU') + " руб";
+    rullTotalDisplay.textContent = "Цена: " + total.toLocaleString('ru-RU') + " AMD";
 }
 
 // Печать на холсте
@@ -165,9 +256,54 @@ function calculateCanvasTotal() {
 
     if (selectedSize && canvasPrices[selectedSize]) {
         const total = canvasPrices[selectedSize] * quantity;
-        canvasTotalDisplay.textContent = `Цена: ${total.toLocaleString('ru-RU')} руб`;
+        canvasTotalDisplay.textContent = `Цена: ${total.toLocaleString('ru-RU')} AMD`;
     } else {
-        canvasTotalDisplay.textContent = 'Цена: 0 руб';
+        canvasTotalDisplay.textContent = 'Цена: 0 AMD';
     }
 }
 
+
+//// Թռուցիկների տպագրություն
+function flyerCount() {
+    const rawSize = parseFloat(document.getElementById('flyerSize').value); // օր․ 300, 195, 100
+    const quantity = parseInt(document.getElementById('flyerQuantity').value);
+    const weight = document.getElementById('flyerWeight').value;
+    const type = document.getElementById('flyerType').value;
+
+    if (!rawSize || !quantity || quantity < 50) {
+        document.getElementById('totalFlyerCost').innerText = `Цена: 0 AMD`;
+        document.getElementById('flyerDiscount').innerText = ``;
+        return;
+    }
+
+    // Թղթի խտության գործակից
+    let weightFactor = 1;
+    if (weight.includes("115")) weightFactor = 1.00;
+    if (weight.includes("150")) weightFactor = 1.1;
+    if (weight.includes("170")) weightFactor = 1.3;
+
+    // Թղթի տեսակի գործակից
+    let typeFactor = type === "Անփայլ" ? 1.00 : 1.10;
+
+    // Հիմնական արժեք = 1 հատի գին * քանակ * խտություն * տեսակ
+    let baseCost = rawSize * quantity * weightFactor * typeFactor;
+
+    // Զեղչեր
+    let discount = 0;
+    if (quantity >= 1000) discount = 0.15;
+    else if (quantity >= 500) discount = 0.10;
+    else if (quantity >= 100) discount = 0.05;
+    else if (quantity >= 50) discount = 0.025;
+
+    let totalCost = baseCost - (baseCost * discount);
+    totalCost = Math.round(totalCost); // Կլորացնել ամբողջ թիվ
+
+    // Արդյունքի ցուցադրում
+    if (discount > 0) {
+        document.getElementById('flyerDiscount').innerText = `Զեղչ՝ ${(discount * 100).toFixed(1)}%`;
+    } else {
+        document.getElementById('flyerDiscount').innerText = ``;
+    }
+
+    document.getElementById('totalFlyerCost').innerText = `Цена: ${totalCost.toLocaleString('hy-AM')} AMD`;
+}
