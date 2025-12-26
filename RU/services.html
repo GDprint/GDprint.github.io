@@ -3012,7 +3012,7 @@
 		});
 
 	</script>
-<audio id="copyAudio-ru" src="click.mp3" preload="auto"></audio>
+<audio id="copyAudio-ru" src="../assets/audio/click.mp3" preload="auto"></audio>
 
 <script>
 	//audio ֆունկցիա
@@ -3026,9 +3026,9 @@ const audioFiles = {
 // Function to get current language from URL or HTML
 function getCurrentLanguage() {
     const url = window.location.href;
-    if (url.includes('/RU/')) return 'ru';
+    if (url.includes('/HY/')) return 'hy';
     if (url.includes('/EN/')) return 'en';
-    return 'hy'; // Default to Armenian
+    return 'ru'; // Default to Armenian
 }
 
 // Function to copy text and play audio
