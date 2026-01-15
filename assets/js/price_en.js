@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const total = qty * PRICE_PER_ITEM;
-        totalCostEl.textContent = "Price: " + total.toLocaleString("hy-AM") + " AMD";
+        totalCostEl.textContent = "Price: " + total.toLocaleString("en-EN") + " AMD";
     }
 
     // սկզբնական հաշվարկ
