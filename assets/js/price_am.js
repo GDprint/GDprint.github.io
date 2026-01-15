@@ -144,6 +144,33 @@ function calculateBCCost() {
 	document.getElementById('totalBCCost').innerText = `Արժեքը: ${totalBCCost} AMD`;
 }
 
+//Այցեքարտերի տպագրություն Calculator functionality
+document.addEventListener("DOMContentLoaded", function () {
+    const quantityInput = document.getElementById("quantity");
+    const totalCostEl = document.getElementById("totalBCCost");
+
+    const PRICE_PER_ITEM = 8;
+    const MIN_QTY = 1000;
+
+    function calculateBCCost() {
+        let qty = parseInt(quantityInput.value);
+
+        if (isNaN(qty) || qty < MIN_QTY) {
+            qty = MIN_QTY;
+            quantityInput.value = MIN_QTY;
+        }
+
+        const total = qty * PRICE_PER_ITEM;
+        totalCostEl.textContent = "Արժեքը: " + total.toLocaleString("hy-AM") + " AMD";
+    }
+
+    // սկզբնական հաշվարկ
+    calculateBCCost();
+
+    // հաշվարկ փոփոխման ժամանակ
+    quantityInput.addEventListener("input", calculateBCCost);
+});
+
 //Ձևաթխտերի տպագրություն Calculator function
 function blankForms() {
 	const printTypeCost = parseFloat(document.getElementById('printType').value);
@@ -195,44 +222,45 @@ function PostForms() {
 	document.getElementById('payPosting').disabled = false;
 }
 
-// Roll Up պատվերի ձև
 const rullSizeSelect = document.getElementById("rullsize");
 const rullQuantityInput = document.getElementById("rullquantity");
 const rullTotalDisplay = document.getElementById("totalRLPrice");
 
-rullSizeSelect.addEventListener("change", function () {
-    rullQuantityInput.disabled = false;
-    calculateRollUpPrice();
-});
-
+rullSizeSelect.addEventListener("change", calculateRollUpPrice);
 rullQuantityInput.addEventListener("input", calculateRollUpPrice);
 
 function calculateRollUpPrice() {
-    const price = parseInt(rullSizeSelect.value) || 0;
+    const selectedOption = rullSizeSelect.options[rullSizeSelect.selectedIndex];
+    const price = parseInt(selectedOption.dataset.price) || 0;
     const quantity = parseInt(rullQuantityInput.value) || 1;
+
     const total = price * quantity;
+
+    // Ցույց տալ արժեքը
     rullTotalDisplay.textContent = "Արժեքը: " + total.toLocaleString('hy-AM') + " AMD";
-    document.getElementById('payRollUp').disabled = total <= 0;
+
+    // Ուղարկման hidden fields
+    let form = document.getElementById('RollupOrderForm');
+    let hiddenPrice = form.querySelector('input[name="Մեկ հատի գին"]');
+    let hiddenTotal = form.querySelector('input[name="Ընդհանուր գին"]');
+
+    if (!hiddenPrice) {
+        hiddenPrice = document.createElement('input');
+        hiddenPrice.type = 'hidden';
+        hiddenPrice.name = 'Մեկ հատի գին';
+        form.appendChild(hiddenPrice);
+    }
+    if (!hiddenTotal) {
+        hiddenTotal = document.createElement('input');
+        hiddenTotal.type = 'hidden';
+        hiddenTotal.name = 'Ընդհանուր գին';
+        form.appendChild(hiddenTotal);
+    }
+
+    hiddenPrice.value = price + ' AMD';
+    hiddenTotal.value = total + ' AMD';
 }
 
-// Կտավի վրա տպագրություն
-const canvasPrices = {
-    "20x30": 5460,
-    "30x40": 5850,
-    "40x50": 6370,
-    "50x70": 6890,
-    "60x80": 7410,
-    "70x100": 7930,
-    "100x150": 14820,
-    "20x20": 5670,
-    "25x35": 6100,
-    "35x35": 6620,
-    "40x60": 6620,
-    "60x60": 7700,
-    "80x120": 9180,
-    "100x100": 10400,
-    "120x180": 19700
-};
 
 const canvasSizeSelect = document.getElementById('canvasize');
 const canvasQuantityInput = document.getElementById('canvaquantity');
@@ -242,23 +270,44 @@ canvasSizeSelect.addEventListener('change', calculateCanvasTotal);
 canvasQuantityInput.addEventListener('input', calculateCanvasTotal);
 
 function calculateCanvasTotal() {
-    const selectedSize = canvasSizeSelect.value;
+    const selectedOption = canvasSizeSelect.options[canvasSizeSelect.selectedIndex];
+    const price = parseInt(selectedOption.dataset.price) || 0;
     const quantity = parseInt(canvasQuantityInput.value) || 1;
+    const total = price * quantity;
 
-    if (selectedSize && canvasPrices[selectedSize]) {
-        const total = canvasPrices[selectedSize] * quantity;
-        canvasTotalDisplay.textContent = `Արժեքը՝ ${total.toLocaleString('hy-AM')} AMD`;
-        document.getElementById('payCanvas').disabled = false;
-    } else {
-        canvasTotalDisplay.textContent = 'Արժեքը՝ 0 AMD';
-        document.getElementById('payCanvas').disabled = true;
+    canvasTotalDisplay.textContent = `Արժեքը՝ ${total.toLocaleString('hy-AM')} AMD`;
+
+    // Hidden fields պատվերի համար
+    const form = document.getElementById('CanvasOrderForm');
+    
+    let onePriceInput = form.querySelector('input[name="Մեկ հատի գին"]');
+    let totalPriceInput = form.querySelector('input[name="Ընդհանուր գին"]');
+
+    if (!onePriceInput) {
+        onePriceInput = document.createElement('input');
+        onePriceInput.type = 'hidden';
+        onePriceInput.name = 'Մեկ հատի գին';
+        form.appendChild(onePriceInput);
     }
+    if (!totalPriceInput) {
+        totalPriceInput = document.createElement('input');
+        totalPriceInput.type = 'hidden';
+        totalPriceInput.name = 'Ընդհանուր գին';
+        form.appendChild(totalPriceInput);
+    }
+
+    onePriceInput.value = price + ' AMD';
+    totalPriceInput.value = total + ' AMD';
 }
 
 
 //// Թռուցիկների տպագրություն
 function flyerCount() {
-    const rawSize = parseFloat(document.getElementById('flyerSize').value); // օր․ 300, 195, 100
+    const sizeSelect = document.getElementById('flyerSize');
+    const rawSize = parseFloat(
+        sizeSelect.options[sizeSelect.selectedIndex].dataset.price
+    );
+
     const quantity = parseInt(document.getElementById('flyerQuantity').value);
     const weight = document.getElementById('flyerWeight').value;
     const type = document.getElementById('flyerType').value;
@@ -278,7 +327,7 @@ function flyerCount() {
     // Թղթի տեսակի գործակից
     let typeFactor = type === "Անփայլ" ? 1.00 : 1.10;
 
-    // Հիմնական արժեք = 1 հատի գին * քանակ * խտություն * տեսակ
+    // Հիմնական արժեք
     let baseCost = rawSize * quantity * weightFactor * typeFactor;
 
     // Զեղչեր
@@ -286,17 +335,13 @@ function flyerCount() {
     if (quantity >= 1000) discount = 0.15;
     else if (quantity >= 500) discount = 0.10;
     else if (quantity >= 100) discount = 0.05;
-    else if (quantity >= 50) discount = 0.025;
 
-    let totalCost = baseCost - (baseCost * discount);
-    totalCost = Math.round(totalCost); // Կլորացնել ամբողջ թիվ
+    let totalCost = Math.round(baseCost - baseCost * discount);
 
     // Արդյունքի ցուցադրում
-    if (discount > 0) {
-        document.getElementById('flyerDiscount').innerText = `Զեղչ՝ ${(discount * 100).toFixed(1)}%`;
-    } else {
-        document.getElementById('flyerDiscount').innerText = ``;
-    }
+    document.getElementById('flyerDiscount').innerText =
+        discount > 0 ? `Զեղչ՝ ${discount * 100}%` : ``;
 
-    document.getElementById('totalFlyerCost').innerText = `Արժեքը: ${totalCost.toLocaleString('hy-AM')} AMD`;
+    document.getElementById('totalFlyerCost').innerText =
+        `Արժեքը: ${totalCost.toLocaleString('hy-AM')} AMD`;
 }
