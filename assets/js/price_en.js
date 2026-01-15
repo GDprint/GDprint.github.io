@@ -89,26 +89,6 @@ function calculateCost(forceAutoEyelets = false) {
 
     totalCostEl.innerText = `Price: ${totalCost.toFixed(0)} AMD`;
 }
-////Լայնաֆորմատ տպագրություն Calculator functionality
-//document.getElementById('width').addEventListener('input', calculateCost);
-//document.getElementById('height').addEventListener('input', calculateCost);
-//document.getElementById('servicePackage').addEventListener('change', calculateCost);
-//
-//function calculateCost() {
-//	const width = parseFloat(document.getElementById('width').value);
-//	const height = parseFloat(document.getElementById('height').value);
-//	const packageCost = parseFloat(document.getElementById('servicePackage').value);
-//
-//	if (!width || !height || !packageCost || width <= 0 || height <= 0) {
-//		document.getElementById('totalCost').innerText = `Price:  0 AMD`;
-//		return;
-//	}
-//
-//	const area = width * height;
-//	const totalCost = packageCost * area;
-//
-//	document.getElementById('totalCost').innerText = `Price: ${totalCost.toFixed(0)} AMD`;
-//}
 
 //Լուսանկարների տպագրություն Calculator functionality
 function photoCount() {
@@ -128,19 +108,31 @@ function photoCount() {
 
 
 //Այցեքարտերի տպագրություն Calculator functionality
-document.getElementById('quantity').addEventListener('input', calculateBCCost);
+document.addEventListener("DOMContentLoaded", function () {
+    const quantityInput = document.getElementById("quantity");
+    const totalCostEl = document.getElementById("totalBCCost");
 
-function calculateBCCost() {
-	const quantity = parseInt(document.getElementById('quantity').value);
-	const pricePerCard = 8; // Price of 1 card is 8 AMD
-	let totalBCCost = 0;
+    const PRICE_PER_ITEM = 8;
+    const MIN_QTY = 1000;
 
-	if (quantity >= 1000) {
-		totalBCCost = quantity * pricePerCard; // Calculate total cost for entered quantity
-	}
+    function calculateBCCost() {
+        let qty = parseInt(quantityInput.value);
 
-	document.getElementById('totalBCCost').innerText = `Price: ${totalBCCost} AMD `;
-}
+        if (isNaN(qty) || qty < MIN_QTY) {
+            qty = MIN_QTY;
+            quantityInput.value = MIN_QTY;
+        }
+
+        const total = qty * PRICE_PER_ITEM;
+        totalCostEl.textContent = "Price: " + total.toLocaleString("hy-AM") + " AMD";
+    }
+
+    // սկզբնական հաշվարկ
+    calculateBCCost();
+
+    // հաշվարկ փոփոխման ժամանակ
+    quantityInput.addEventListener("input", calculateBCCost);
+});
 
 //Ձևաթխտերի տպագրություն Calculator function
 // Calculator function
