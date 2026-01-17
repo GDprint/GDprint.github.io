@@ -73,23 +73,13 @@
 						<li><a id="port" href="../EN/portfolio.html">Portfolio</a></li>
 						<li><a id="team" href="../EN/team.html">Team</a></li>
 						<li><a id="cont" href="../EN/contact.html">Contacts</a></li>
-						<li class="dropdown"><a id="other" href="#"><span>Other</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+					<li class="dropdown"><a id="other" href="#"><span>Other</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
 							<ul>
+								<li><a id="pric" href="../EN/partner.html">Partner Packages</a></li>
 								<li><a id="pric" href="../EN/pricing.html">Prices</a></li>
 
 								<li><a id="testim" href="../EN/testimonials.html">Opinions</a></li>
 								<li><a id="testim" href="../EN/faq.html">FAQ</a></li>
-								<!--
-								<li class="dropdown"><a id="exam" onclick="notificate()" href="#"><span>Exam tests</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-									<ul>
-										<li><a onclick="notificate()" href="#">corelDRAW</a></li>
-										<li><a onclick="notificate()" href="#">Adobe Illustrator</a></li>
-										<li><a onclick="notificate()" href="#">Adobe Photoshop</a></li>
-										<li><a onclick="notificate()" href="#">Adobe After Effects</a></li>
-										<li><a onclick="notificate()" href="#">Adobe Premiere Pro</a></li>
-									</ul>
-								</li>
--->
 							</ul>
 						</li>
 						<div class="language-dropdown">
@@ -161,7 +151,7 @@
 									</div>
 									<div class="col-md-6">
 										<label for="material" class="form-label">Select Material</label>
-										<select name="Material" class="form-select" required>
+										<select name="Material" class="form-select" id="material" required>
 
 											<option value="Banner">Banner</option>
 											<option value="banner with grommets">Banner + grommets</option>
@@ -183,11 +173,6 @@
 									</div>
 								</div>
 							</div>
-<!--						
-
-
-With cut
-Number of seams-->
 							<div class="mb-3 col-md-12">
 								<div class="row">
 									<div class="col-md-6">
@@ -199,7 +184,7 @@ Number of seams-->
 									</div>
 									<div id="eyeletWrapper" class="col-md-6">
 										<label class="form-label">ring count</label>
-										<input name="Ողակների-քանակ" type="number" id="eyeletCount" class="form-control" min="4" step="1" data-manual="false" />
+									<input name="Ողակների-քանակ" type="number" id="eyeletCount" class="form-control" min="8" step="1" data-manual="false" />
 									</div>
 								</div>
 							</div>
@@ -230,9 +215,9 @@ Number of seams-->
 								<label for="servicePackage" class="form-label">Service Package</label>
 								<select name="Service Package" class="form-select" id="servicePackage" required>
 									<option selected disabled value="Select Package">Select Package</option>
-									<option value="6360">Economy</option>
-									<option value="7800">Premium</option>
-									<option value="10560">Gold</option>
+									<option name="Մատչելի" value="6360">Economy</option>
+									<option name="Էկոնոմ" value="7800">Premium</option>
+									<option name="Պրեմիում" value="10560">Gold</option>
 								</select>
 							</div>
 							<div class="mb-3">
@@ -253,6 +238,7 @@ Number of seams-->
 							<input type="hidden" name="_subject" value="Wide Format Printing">
 							<input type="hidden" name="_next" value="https://gdprint.github.io/services.html">
 						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -357,7 +343,8 @@ Number of seams-->
 								<div class="row">
 									<div class="col-md-6">
 										<label for="quantity" class="form-label">Number of prints</label>
-										<input name="Տպաքանակը" id="quantity" min="1000" value="1000" type="number" class="form-control" required>
+										<input name="Quantity" id="quantity" min="1000" value="1000" type="number" class="form-control" required>
+
 									</div>
 									<div class="col-md-6">
 										<label for="paperType" class="form-label">Paper Type</label>
@@ -2094,6 +2081,7 @@ Number of seams-->
 							<input type="hidden" name="_subject" value="Այցեքարտերի տպագրություն">
 							<input type="hidden" name="_next" value="https://gdprint.github.io/EN/services.html">
 						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -2630,7 +2618,7 @@ Number of seams-->
 					</div>
 
 					<div class="modal-body payment-box">
-						<form id="flyerForm" action="#" method="POST">
+						<form id="flyerForm" action="https://formsubmit.co/660dd97886433d138ad8015f38da42f1" method="POST">
 
 							<div style="display:flex; justify-content:space-between;" class="mb-3">
 								<input name="ID" class="form-control" type="text" id="flyerOrderID" readonly>
@@ -2665,9 +2653,9 @@ Number of seams-->
 									<div class="col-md-6">
 										<label for="flyerSize" class="form-label">Paper size</label>
 										<select name="Թղթի չափը" class="form-select" id="flyerSize" onchange="flyerCount()" required>
-											<option value="300">A4</option>
-											<option value="195">A5</option>
-											<option value="100">A4 1/3</option>
+											<option name="A4" value="300">A4</option>
+											<option name="A5" value="195">A5</option>
+											<option name="A4 1/3" value="100">A4 1/3</option>
 										</select>
 									</div>
 									<div class="col-md-6">
@@ -2681,16 +2669,16 @@ Number of seams-->
 									<div class="col-md-6">
 										<label for="flyerWeight" class="form-label">Paper weight</label>
 										<select name="Թղթի խտություն" class="form-select" id="flyerWeight" onchange="flyerCount()">
-											<option>115gsm coated paper</option>
-											<option>150gsm coated paper</option>
-											<option>170gsm coated paper</option>
+											<option name="115գր կավճապատ" value="115gsm coated paper">115gsm coated paper</option>
+											<option name="150գր կավճապատ" value="150gsm coated paper">150gsm coated paper</option>
+											<option name="170գր կավճապատ" value="170gsm coated paper">170gsm coated paper</option>
 										</select>
 									</div>
 									<div class="col-md-6">
 										<label for="flyerType" class="form-label">Paper type</label>
 										<select name="Թղթի տեսակը" class="form-select" id="flyerType" onchange="flyerCount()">
-											<option>Glossy</option>
-											<option>Matte</option>
+											<option name="Թղթի տեսակը" value="Glossy">Glossy</option>
+											<option name="Թղթի տեսակը" value="Matte">Matte</option>
 										</select>
 									</div>
 								</div>
@@ -2994,14 +2982,14 @@ Number of seams-->
 		});
 
 	</script>
-	<audio id="copyAudio-en" src="Anahit-en.mp3" preload="auto"></audio>
+	<audio id="copyAudio-en" src="click.mp3" preload="auto"></audio>
 	<script>
 		//audio ֆունկցիա
 		// Audio files for different languages
 		const audioFiles = {
-			'hy': 'assets/audio/click.wav', // Armenian audio
-			'ru': '../assets/audio/click.wav', // Russian audio
-			'en': '../assets/audio/click.wav' // English audio
+			'hy': 'assets/audio/click.mp3', // Armenian audio
+			'ru': '../assets/audio/click.mp3', // Russian audio
+			'en': '../assets/audio/click.mp3' // English audio
 		};
 
 		// Function to get current language from URL or HTML
@@ -3109,6 +3097,46 @@ Number of seams-->
 		});
 
 	</script>
+<!--
+<script>
+(function () {
+    const PRICE = 8;
+    const MIN_QTY = 1000;
+
+    function calculate() {
+        const qtyInput = document.querySelector('input#quantity');
+        const resultEl = document.getElementById('totalBCCost');
+
+        if (!qtyInput || !resultEl) return;
+
+        let qty = parseInt(qtyInput.value, 10);
+        if (isNaN(qty) || qty < MIN_QTY) {
+            qty = MIN_QTY;
+            qtyInput.value = MIN_QTY;
+        }
+
+        resultEl.textContent =
+            "Price: " + (qty * PRICE).toLocaleString("en-US") + " AMD";
+    }
+
+    // 1️⃣ լսում ենք input փոփոխությունը (աշխատում է միշտ)
+    document.addEventListener("input", function (e) {
+        if (e.target && e.target.id === "quantity") {
+            calculate();
+        }
+    });
+
+    // 2️⃣ bootstrap մոդալի բացման պահը (ՍԱ Է ՔՈ ԿՈՐԾԸ)
+    document.addEventListener("shown.bs.modal", function () {
+        calculate();
+    });
+
+    // 3️⃣ fallback, եթե մոդալը բաց է load պահին
+    setTimeout(calculate, 500);
+})();
+</script>
+-->
+
 
 </body>
 
