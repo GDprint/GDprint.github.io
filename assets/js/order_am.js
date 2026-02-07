@@ -111,7 +111,7 @@ const orderData = {
 			phone: "+37491499001"
 		},
 		description: "",
-			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LTP-822593.jpg?raw=true"]
+			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/HH.jpg?raw=true"]
 	}
 	
 
@@ -405,5 +405,6 @@ function displayStats() {
         </div>
     `;
 }
+
 
 
