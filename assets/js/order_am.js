@@ -100,6 +100,18 @@ const orderData = {
 		},
 		description: "Գովազդային պաստառ՝ BEER-ՅԱՆ գարեջրատան համար։ Ձախում տեղադրված է հայկական զարդանախշով լոգո և ուղղահայաց BEER գրությունը։ Աջում՝ ժպտերես աղջիկ ավանդական հագուստով՝ գարեջրի բաժակներով, սեղանին խեցգետին և նախուտեստ։ Ստորին մասում՝ խորիմաստ հաղորդագրություն՝ «Գարեջուր որ հիշվում է՝ ինչպես անունը»:",
 			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/harut.jpg?raw=true"]
+			
+	},"LTP-902855": {
+		title: "Պատվեր #LTP-902855 - Լայնաֆորմատ տպագրություն",
+		printingMaterial: "Banner-ի վրա տպագրություն",
+		orderStage: "Պատվերի դիտարկում",
+		customerData: {
+			name: "Harut",
+			 email: "hakobyan.harutyun08@icloud.com",
+			phone: "+37491499001"
+		},
+		description: "",
+			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LTP-902855.jpg?raw=true"]
 	}
 	
 
@@ -393,3 +405,4 @@ function displayStats() {
         </div>
     `;
 }
+
