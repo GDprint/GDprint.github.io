@@ -41,7 +41,8 @@ const orderData = {
 		images: [
         "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/151857.jpg?raw=true"
             ]
-	},	"149058": {
+	},	
+	"149058": {
 		title: "Պատվեր #149058 - Ինքնապչուն թաղանթի տպագրություն",
 		printingMaterial: "Ինքնապչուն թաղանթի տպագրություն 3 կտոր",
 		orderStage: "Հանձնված պատվեր",
@@ -54,7 +55,8 @@ const orderData = {
 		images: [
         "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/bandicam%202025-04-12%2019-49-12-564.jpg?raw=true"
             ]
-	}, "LPT-573886": {
+	}, 
+	"LPT-573886": {
 		title: "Պատվեր #LPT-573886 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
 		orderStage: "Հանձնված պատվեր",
@@ -67,7 +69,8 @@ const orderData = {
 		images: [
         "https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LPT-573886.jpg?raw=true"
             ]
-	},"LPT-710418": {
+	},
+	"LPT-710418": {
 		title: "Պատվեր #LPT-710418 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
 		orderStage: "Հանձնված պատվեր",
@@ -78,7 +81,8 @@ const orderData = {
 		},
 		description: "Banner-ի վրա տպագրություն:",
 		images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/Bako.jpg?raw=true"]
-	}, "LTP-295245": {
+	}, 
+	"LTP-295245": {
 		title: "Պատվեր #LTP-295245 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
 		orderStage: "Պատվերը կասեցված է",
@@ -89,7 +93,9 @@ const orderData = {
 		},
 		description: "Banner-ի վրա տպագրություն:",
 		images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LTP-295245.jpg?raw=true"]
-	}, "LTP-513973": {
+		
+	}, 
+	"LTP-513973": {
 		title: "Պատվեր #LTP-513973 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
 		orderStage: "Պատվերը գտնվում է տպագրության փուլում",
@@ -100,18 +106,32 @@ const orderData = {
 		},
 		description: "Գովազդային պաստառ՝ BEER-ՅԱՆ գարեջրատան համար։ Ձախում տեղադրված է հայկական զարդանախշով լոգո և ուղղահայաց BEER գրությունը։ Աջում՝ ժպտերես աղջիկ ավանդական հագուստով՝ գարեջրի բաժակներով, սեղանին խեցգետին և նախուտեստ։ Ստորին մասում՝ խորիմաստ հաղորդագրություն՝ «Գարեջուր որ հիշվում է՝ ինչպես անունը»:",
 			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/harut.jpg?raw=true"]
-			
-	},"LTP-902855": {
+		
+	}, 
+	"LTP-902855": {
 		title: "Պատվեր #LTP-902855 - Լայնաֆորմատ տպագրություն",
 		printingMaterial: "Banner-ի վրա տպագրություն",
-		orderStage: "Պատվերի դիտարկում",
+		orderStage: "Պատվերը գտնվում է տպագրության փուլում",
 		customerData: {
 			name: "Harut",
 			 email: "hakobyan.harutyun08@icloud.com",
 			phone: "+37491499001"
 		},
 		description: "",
-			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/HH.jpg?raw=true"]
+			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/LTP-902855.jpg?raw=true"]
+		
+	}, 
+	"AT-889619": {
+		title: "Պատվեր #AT-889619 - Այցեքարտերի տպագրություն",
+		printingMaterial: "300գր թուղտ glossy",
+		orderStage: "⏳ Սպասում է հաստատման",
+		customerData: {
+			name: "Ռաֆաել Ալոյան",
+			 email: "rafaelaloyan@gmail.com",
+			phone: "+37433911090"
+		},
+		description: "Ժամանակակից, պրեմիում և տեխնոլոգիական ոճով երկկողմ այցեքարտ, որի երկու կողմերն ունեն նույն դիզայնը․ տարբերությունն այն է, որ մի կողմում ամբողջ տեղեկատվությունը ներկայացված է հայերեն, իսկ մյուս կողմում՝ անգլերեն։ Մուգ տեխնոլոգիական ֆոնը, կապույտ նեոնային շեշտադրումները և կենտրոնական Voltus լոգոն ստեղծում են նորարարական և վստահություն ներշնչող տեսք։ Երկու լեզուներով ներկայացված տեղեկատվությունը այցեքարտը դարձնում է հարմար ինչպես տեղական, այնպես էլ միջազգային հաճախորդների համար՝ պահպանելով միասնական բրենդային ինքնությունը և բարձր պրոֆեսիոնալ տեսքը։",
+			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/32.jpg?raw=true"]
 	}
 	
 
@@ -405,6 +425,3 @@ function displayStats() {
         </div>
     `;
 }
-
-
-
