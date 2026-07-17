@@ -13,6 +13,18 @@ const orderData = {
 		images: [
         "https://github.com/GDprint/GDprint.github.io/blob/Master/img/dummies/works/148.jpg?raw=true"
             ]
+	}, 
+	"AT-889619": {
+		title: "Order #AT-889619 – Business Card Printing",
+		printingMaterial: "Paper: 300 gsm Glossy",
+		orderStage: "⏳ Awaiting Approval",
+		customerData: {
+			name: "Rafael Aloyan",
+			 email: "rafaelaloyan@gmail.com",
+			phone: "+37433911090"
+		},
+		description: "A modern, premium, double-sided business card designed in a high-tech style. Both sides feature the same visual design, with one side presenting all information in Armenian and the other in English. The dark technology-inspired background, blue neon accents, and the central Voltus logo create an innovative, professional, and trustworthy appearance. The bilingual layout makes the business card suitable for both local and international clients while maintaining a consistent brand identity and a premium professional look.",
+			images: ["https://github.com/GDprint/GDprint.github.io/blob/Master/assets/img/portfolio/32.jpg?raw=true"]
 	}
 };
 
